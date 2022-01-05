@@ -5,15 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "boxicons";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material";
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#0a1929",
-    },
-  },
-});
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./GlobalMUI";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

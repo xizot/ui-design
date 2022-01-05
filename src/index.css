@@ -1,0 +1,24 @@
+.slick-slider {
+  overflow: hidden !important;
+}
+
+.slick-list {
+  margin: 0 -12px !important;
+}
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}
+.slide {
+  height: 100%;
+}
+.slick-slide > div {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}

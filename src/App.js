@@ -1,9 +1,13 @@
+import { CssBaseline } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
+import Footer from "./components/Layouts/Footer/Footer";
+import Header from "./components/Layouts/Header/Header";
 import { routes } from "./configs";
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>this is header</header>
+      <CssBaseline />
+      <Header />
       <Routes>
         {routes.map((route, i) => (
           <Route
@@ -14,6 +18,7 @@ function App() {
           />
         ))}
       </Routes>
+      <Footer />
     </div>
   );
 }
