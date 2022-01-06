@@ -72,8 +72,8 @@ export const MainvisualWrapper = styled("div")({
 });
 
 export const MainvisualItem = styled("div")({
-  height: "calc(100vh - 64px)",
-  minHeight: 500,
+  height: "35vh",
+  minHeight: 450,
   width: "100%",
   display: "block",
   position: "relative",
@@ -94,27 +94,25 @@ export const MainvisualInfo = styled(Box)({
   transform: "translateY(-50%)",
   zIndex: 2,
   color: "white",
-  [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(0, 2),
-  },
+  padding: theme.spacing(0, 2),
 });
 
 export const MainVisualMovieTitle = styled(Typography)({
-  fontSize: 60,
+  fontSize: 50,
   fontWeight: "bold",
-  width: 700,
+  width: "60rem",
   maxWidth: "100%",
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(2),
   [theme.breakpoints.down("sm")]: {
-    fontSize: 50,
+    fontSize: 40,
   },
   [theme.breakpoints.down("xs")]: {
-    fontSize: 40,
+    fontSize: 30,
   },
 });
 
 export const MainVisualLabel = styled(Typography)({
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(2),
 });
 
 export const SliderPaging = styled("div")({

@@ -66,41 +66,43 @@ function Mainvisual() {
   };
   return (
     <MainvisualWrapper>
-      <Slider {...settings}>
-        {movies.map((movie, index) => (
-          <MainvisualItem className='sliderItem' key={index}>
-            <div className='sliderImage'>
-              <img src={movie.backDrop} alt='' />
-            </div>
-            <MainvisualInfo>
-              <Container>
-                <MainVisualLabel variant='h5'>PHIM NỔI BẬT</MainVisualLabel>
-                <MainVisualMovieTitle variant='h4'>
-                  {movie.title}
-                </MainVisualMovieTitle>
-                <Typography variant='body1' className='sliderDescription'>
-                  {movie.overview}
-                </Typography>
-                <Link to={`/details/${movie._id}`}>
-                  <ButtonViewDetails
-                    variant='contained'
-                    color='primary'
-                    endIcon={
-                      <box-icon
-                        className='icon'
-                        name='right-arrow-alt'
-                        color='#fff'
-                      ></box-icon>
-                    }
-                  >
-                    Xem Chi Tiết
-                  </ButtonViewDetails>
-                </Link>
-              </Container>
-            </MainvisualInfo>
-          </MainvisualItem>
-        ))}
-      </Slider>
+      <Container>
+        <Slider {...settings}>
+          {movies.map((movie, index) => (
+            <MainvisualItem className='sliderItem' key={index}>
+              <div className='sliderImage'>
+                <img src={movie.backDrop} alt='' />
+              </div>
+              <MainvisualInfo>
+                <Container>
+                  <MainVisualLabel variant='h5'>PHIM NỔI BẬT</MainVisualLabel>
+                  <MainVisualMovieTitle variant='h4'>
+                    {movie.title}
+                  </MainVisualMovieTitle>
+                  <Typography variant='body1' className='sliderDescription'>
+                    {movie.overview}
+                  </Typography>
+                  <Link to={`/details/${movie._id}`}>
+                    <ButtonViewDetails
+                      variant='contained'
+                      color='primary'
+                      endIcon={
+                        <box-icon
+                          className='icon'
+                          name='right-arrow-alt'
+                          color='#fff'
+                        ></box-icon>
+                      }
+                    >
+                      Xem Chi Tiết
+                    </ButtonViewDetails>
+                  </Link>
+                </Container>
+              </MainvisualInfo>
+            </MainvisualItem>
+          ))}
+        </Slider>
+      </Container>
     </MainvisualWrapper>
   );
 }

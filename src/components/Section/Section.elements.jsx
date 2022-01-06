@@ -8,13 +8,9 @@ import {
 export const SectionWrapper = styled(Container)({
   marginBottom: defaultSectionMargin,
   [theme.breakpoints.down("lg")]: {
-    padding: theme.spacing(2),
     marginBottom: defaultSectionMarginMobile,
-    maxWidth: `calc(100% - 40px)`,
   },
-  [theme.breakpoints.down("md")]: {
-    maxWidth: `calc(100% - ${theme.spacing(4)})`,
-  },
+  [theme.breakpoints.down("md")]: {},
 });
 export const SectionTitle = styled(Typography)({
   fontWeight: "bolder",

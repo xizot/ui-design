@@ -88,7 +88,15 @@ const Header = () => {
   };
 
   return (
-    <AppBar position='static'>
+    <AppBar
+      position='static'
+      sx={{
+        marginBottom: {
+          xs: defaultSectionMarginMobile,
+          md: defaultSectionMargin,
+        },
+      }}
+    >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Logo />
