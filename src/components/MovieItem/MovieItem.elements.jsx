@@ -2,13 +2,33 @@ import { styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { defaultPadding, theme } from "../../GlobalMUI";
 
-export const MovieWrapper = styled(Link)({
+export const MovieHover = styled(Link)({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  background: "rgba(0,0,0,.4)",
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all .5s",
+  opacity: 0,
+  pointerEvents: "none",
+});
+
+export const MovieWrapper = styled("div")({
   display: "flex",
   flexDirection: "column",
   height: "100%",
   textDecoration: "none",
   color: "#000",
   padding: theme.spacing(0, 1.5),
+  position: "relative",
+  "&:hover .on-hover": {
+    opacity: 1,
+    pointerEvents: "all",
+  },
 });
 
 export const MovieImageWrapper = styled("div")({
@@ -27,11 +47,13 @@ export const MovieImage = styled("img")({
   top: 0,
 });
 
-export const MovieContent = styled("div")({
+export const MovieContent = styled(Link)({
   padding: defaultPadding,
   flex: 1,
   display: "flex",
+  color: "#000",
 });
+
 export const MovieContentText = styled("div")({
   display: "flex",
   flexDirection: "column",

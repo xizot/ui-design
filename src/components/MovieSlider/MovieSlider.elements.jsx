@@ -1,4 +1,4 @@
-import { IconButton, styled } from "@mui/material";
+import { IconButton, styled, Typography } from "@mui/material";
 import { theme } from "../../GlobalMUI";
 
 export const SliderNav = styled(IconButton)((props) => ({

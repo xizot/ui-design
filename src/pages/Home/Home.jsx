@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import Mainvisual from "../../components/Mainvisual/Mainvisual";
 import MovieSlider from "../../components/MovieSlider/MovieSlider";
 import Section from "../../components/Section/Section";
 import { movies } from "./Home.data";
@@ -14,9 +15,22 @@ function Home() {
   }, []);
   return (
     <div>
-      <Section>
-        <MovieSlider movies={movies} loading={loading} />
-      </Section>
+      <Mainvisual />
+      <MovieSlider
+        title='TOP PHIM MỚI NHẤt'
+        movies={movies}
+        loading={loading}
+      />
+      <MovieSlider
+        title='TOP PHIM ĐÁNH GIÁ CAO'
+        movies={movies}
+        loading={loading}
+      />
+      <MovieSlider
+        title='TOP PHIM KHÔNG NÊN XEM'
+        movies={movies}
+        loading={loading}
+      />
     </div>
   );
 }

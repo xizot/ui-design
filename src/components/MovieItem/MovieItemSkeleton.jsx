@@ -13,7 +13,7 @@ function MovieItemSkeleton() {
       <MovieImageWrapper>
         <SkeletonImage variant='rectangular' />
       </MovieImageWrapper>
-      <MovieContent>
+      <MovieContent to='#'>
         <MovieContentText>
           <Skeleton variant='text' height={30} />
           <Skeleton variant='text' width={40} height={20} />

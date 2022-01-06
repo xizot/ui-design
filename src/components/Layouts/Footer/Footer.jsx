@@ -33,7 +33,9 @@ function Footer() {
         </Link>
         <FooterNavigation>
           {pages.map((page, i) => (
-            <FooterNavigationItem to='/'> {page}</FooterNavigationItem>
+            <FooterNavigationItem key={i} to='/'>
+              {page}
+            </FooterNavigationItem>
           ))}
         </FooterNavigation>
         <FooterBottom container>
@@ -65,7 +67,7 @@ function Footer() {
               </Link>
             </FooterSocials>
           </Grid>
-          <Grid xs={12} md={3}>
+          <Grid item xs={12} md={3}>
             <Typography
               variant='caption'
               component='p'

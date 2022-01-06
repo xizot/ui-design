@@ -1,10 +1,13 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import Slider from "react-slick";
 import MovieItem from "../MovieItem/MovieItem";
 import NextArrow from "../NextArrow/NextArrow";
 import PrevArrow from "../PrevArrow/PrevArrow";
+import Section from "../Section/Section";
+import { SliderTitle } from "./MovieSlider.elements";
 
-function MovieSlider({ movies, loading = false }) {
+function MovieSlider({ title, movies, loading = false }) {
   const slider = React.useRef(null);
   const newSettings = {
     dots: false,
@@ -24,20 +27,20 @@ function MovieSlider({ movies, loading = false }) {
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 700,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          initialSlide: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
           infinite: movies.length >= 3 ? true : false,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: movies.length >= 2 ? true : false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: movies.length >= 1 ? true : false,
         },
       },
     ],
@@ -45,25 +48,27 @@ function MovieSlider({ movies, loading = false }) {
 
   return (
     <>
-      <PrevArrow onClick={() => slider?.current?.slickPrev()} />
-      <NextArrow onClick={() => slider?.current?.slickNext()} />
-      <Slider {...newSettings} ref={slider}>
-        {loading
-          ? [0, 0, 0, 0, 0, 0].map((_, i) => (
-              <MovieItem key={i} loading={true} />
-            ))
-          : movies.map((movie, i) => (
-              <MovieItem
-                key={i}
-                id={movie.id}
-                title={movie.title}
-                imgSrc={movie.poster}
-                score={movie.score}
-                releasedAt={movie.releasedAt}
-                loading={false}
-              />
-            ))}
-      </Slider>
+      <Section title={title}>
+        <PrevArrow onClick={() => slider?.current?.slickPrev()} />
+        <NextArrow onClick={() => slider?.current?.slickNext()} />
+        <Slider {...newSettings} ref={slider}>
+          {loading
+            ? [0, 0, 0, 0, 0, 0].map((_, i) => (
+                <MovieItem key={i} loading={true} />
+              ))
+            : movies.map((movie, i) => (
+                <MovieItem
+                  key={i}
+                  id={movie.id}
+                  title={movie.title}
+                  imgSrc={movie.poster}
+                  score={movie.score}
+                  releasedAt={movie.releasedAt}
+                  loading={false}
+                />
+              ))}
+        </Slider>
+      </Section>
     </>
   );
 }
