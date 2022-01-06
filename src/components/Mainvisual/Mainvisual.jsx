@@ -6,7 +6,11 @@ import {
   ButtonViewDetails,
   MainvisualInfo,
   MainvisualItem,
+  MainVisualLabel,
+  MainVisualMovieTitle,
   MainvisualWrapper,
+  SliderPaging,
+  SliderPagingItem,
 } from "./Mainvisual.elements";
 
 function Mainvisual() {
@@ -52,11 +56,11 @@ function Mainvisual() {
     autoplaySpeed: 7000,
     customPaging: function (i) {
       return (
-        <div className='sliderPaging'>
-          <Typography variant='body1' className='sliderPagingItem'>
+        <SliderPaging className='sliderPaging'>
+          <SliderPagingItem variant='body1' className='sliderPagingItem'>
             {`0${i + 1}`.slice(-2)}
-          </Typography>
-        </div>
+          </SliderPagingItem>
+        </SliderPaging>
       );
     },
   };
@@ -70,9 +74,10 @@ function Mainvisual() {
             </div>
             <MainvisualInfo>
               <Container>
-                <Typography variant='h4' className='sliderTitle'>
+                <MainVisualLabel variant='h5'>PHIM NỔI BẬT</MainVisualLabel>
+                <MainVisualMovieTitle variant='h4'>
                   {movie.title}
-                </Typography>
+                </MainVisualMovieTitle>
                 <Typography variant='body1' className='sliderDescription'>
                   {movie.overview}
                 </Typography>

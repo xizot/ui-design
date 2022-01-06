@@ -1,4 +1,4 @@
-import { Box, Button, Container, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 import {
   defaultSectionMargin,
   defaultSectionMarginMobile,
@@ -16,9 +16,8 @@ export const MainvisualWrapper = styled("div")({
     bottom: 50,
     left: "50%",
     transform: "translateX(-50%)",
-    maxWidth: 1280,
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
+    maxWidth: 1200,
+    padding: theme.spacing(0, 2),
 
     textAlign: "left",
     zIndex: 2,
@@ -35,34 +34,8 @@ export const MainvisualWrapper = styled("div")({
     },
   },
 
-  "& .sliderPaging": {
-    width: 40,
-    height: 40,
-    borderRadius: "50%",
-    textAlign: "center",
-    opacity: 0.6,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    "&:after": {
-      opacity: 0,
-      content: "''",
-      position: "absolute",
-      bottom: -10,
-      left: "50%",
-      transform: "translate(-50%, 100%)",
-      width: 1,
-      height: 27,
-      background: "#cecece",
-    },
-  },
-  "& .sliderPagingItem": {
-    fontWeight: 700,
-    fontFamily: "Archivo Black, sans-serif",
-    lineHeight: 0,
-    color: "#fff",
-  },
+  "& .sliderPaging": {},
+  "& .sliderPagingItem": {},
   "& .sliderItem": {},
   "& .sliderImage": {
     width: "100%",
@@ -84,19 +57,7 @@ export const MainvisualWrapper = styled("div")({
     },
   },
   "& .sliderInfo": {},
-  "& .sliderTitle": {
-    fontSize: 60,
-    fontWeight: "bold",
-    width: 700,
-    maxWidth: "100%",
-    marginBottom: theme.spacing(3),
-    [theme.breakpoints.down("sm")]: {
-      fontSize: 50,
-    },
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 40,
-    },
-  },
+  "& .sliderTitle": {},
   "& .sliderDescription": {
     display: "-webkit-box",
     WebkitLineClamp: 2,
@@ -136,4 +97,52 @@ export const MainvisualInfo = styled(Box)({
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(0, 2),
   },
+});
+
+export const MainVisualMovieTitle = styled(Typography)({
+  fontSize: 60,
+  fontWeight: "bold",
+  width: 700,
+  maxWidth: "100%",
+  marginBottom: theme.spacing(3),
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 50,
+  },
+  [theme.breakpoints.down("xs")]: {
+    fontSize: 40,
+  },
+});
+
+export const MainVisualLabel = styled(Typography)({
+  marginBottom: theme.spacing(3),
+});
+
+export const SliderPaging = styled("div")({
+  width: 40,
+  height: 40,
+  borderRadius: "50%",
+  textAlign: "center",
+  opacity: 0.6,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  "&:after": {
+    opacity: 0,
+    content: "''",
+    position: "absolute",
+    bottom: -10,
+    left: "50%",
+    transform: "translate(-50%, 100%)",
+    width: 1,
+    height: 27,
+    background: "#cecece",
+  },
+});
+
+export const SliderPagingItem = styled(Typography)({
+  fontWeight: 700,
+  fontFamily: "Archivo Black, sans-serif",
+  lineHeight: 0,
+  color: "#fff",
 });
