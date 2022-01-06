@@ -9,6 +9,9 @@ export const SectionWrapper = styled(Container)({
   [theme.breakpoints.down("lg")]: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(3),
+    maxWidth: `calc(100% - 40px)`,
+  },
+  [theme.breakpoints.down("md")]: {
     maxWidth: `calc(100% - ${theme.spacing(4)})`,
   },
 });

@@ -89,7 +89,12 @@ const Header = () => {
         <Toolbar disableGutters>
           <Logo />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: { xs: "auto", md: 1 },
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <IconButton
               size='large'
               aria-label='account of current user'
@@ -172,7 +177,7 @@ const Header = () => {
             </Search>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, marginLeft: { xs: "auto", md: "0" } }}>
             {logged ? (
               <>
                 <Tooltip title='Open settings'>

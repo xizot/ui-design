@@ -5,7 +5,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/vScnbrMbDpuwbiRafOcuxHjDKsI.jpg",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/jyqi5BkDoKKIA2WAoz3HBtRHld3.jpg",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/t0jwlwFUrtkPJoq5JH9YrRVROXZ.jpg",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/vScnbrMbDpuwbiRafOcuxHjDKsI.jpg",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/bMmHdhAM1xCQTQ4O3XhXLuXQ0k.jpg",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/5jycWY9V9Chf8XlAwrjBSVWONTi.jpg",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/kiOc87AV2sDlZomxKQtJrvHETiZ.jpg",
   },
   {
     id: 9,
@@ -69,6 +69,6 @@ export const movies = [
     score: "8.0",
     releasedAt: 2021,
     poster:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcTjkJTeEnPh1F2-lr43SxLrCqwIGDQQ8_Aw&usqp=CAU",
+      "https://images.weserv.nl/?url=https://image.tmdb.org/t/p/w342/vScnbrMbDpuwbiRafOcuxHjDKsI.jpg",
   },
 ];
