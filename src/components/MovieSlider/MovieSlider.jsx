@@ -1,11 +1,9 @@
-import { Typography } from "@mui/material";
 import React from "react";
 import Slider from "react-slick";
 import MovieItem from "../MovieItem/MovieItem";
 import NextArrow from "../NextArrow/NextArrow";
 import PrevArrow from "../PrevArrow/PrevArrow";
 import Section from "../Section/Section";
-import { SliderTitle } from "./MovieSlider.elements";
 
 function MovieSlider({ title, movies, loading = false }) {
   const slider = React.useRef(null);
@@ -61,9 +59,9 @@ function MovieSlider({ title, movies, loading = false }) {
                   key={i}
                   id={movie.id}
                   title={movie.title}
-                  imgSrc={movie.poster}
-                  score={movie.score}
-                  releasedAt={movie.releasedAt}
+                  imgSrc={movie.poster_path}
+                  score={movie.vote_average}
+                  releasedAt={movie.release_date}
                   loading={false}
                 />
               ))}

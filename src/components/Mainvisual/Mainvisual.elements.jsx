@@ -18,8 +18,7 @@ export const MainvisualWrapper = styled("div")({
     transform: "translateX(-50%)",
     maxWidth: 1200,
     padding: theme.spacing(0, 2),
-
-    textAlign: "left",
+    textAlign: "right",
     zIndex: 2,
     "& > li": {
       marginRight: theme.spacing(3),
@@ -102,7 +101,7 @@ export const MainVisualMovieTitle = styled(Typography)({
   fontWeight: "bold",
   width: "60rem",
   maxWidth: "100%",
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(1),
   [theme.breakpoints.down("sm")]: {
     fontSize: 40,
   },
@@ -143,4 +142,10 @@ export const SliderPagingItem = styled(Typography)({
   fontFamily: "Archivo Black, sans-serif",
   lineHeight: 0,
   color: "#fff",
+});
+
+export const MainVisualScore = styled("div")({
+  display: "flex",
+  marginBottom: theme.spacing(1),
+  alignItems: "center",
 });

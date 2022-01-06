@@ -2,48 +2,20 @@ import { Box, Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { listPopular } from "../../pages/Home/Home.data";
 import {
   ButtonViewDetails,
   MainvisualInfo,
   MainvisualItem,
   MainVisualLabel,
   MainVisualMovieTitle,
+  MainVisualScore,
   MainvisualWrapper,
   SliderPaging,
   SliderPagingItem,
 } from "./Mainvisual.elements";
 
 function Mainvisual() {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "The Reject",
-      score: "8.0",
-      releasedAt: 2021,
-      backDrop: "https://i.imgur.com/qsHPJRr.jpg",
-      overview:
-        "a short description of something that provides general information but no details: I'll give you a brief overview of what the job involves.",
-    },
-    {
-      id: 2,
-      title: "The Matrix ",
-      score: "8.0",
-      releasedAt: 2021,
-      backDrop: "https://i.imgur.com/qsHPJRr.jpg",
-      overview:
-        "a short description of something that provides general information but no details: I'll give you a brief overview of what the job involves.",
-    },
-    {
-      id: 3,
-      title: "The Matrix ",
-      score: "8.0",
-      releasedAt: 2021,
-      backDrop: "https://i.imgur.com/qsHPJRr.jpg",
-      overview:
-        "a short description of something that provides general information but no details: I'll give you a brief overview of what the job involves.",
-    },
-  ]);
-
   const settings = {
     dots: true,
     fade: true,
@@ -68,10 +40,10 @@ function Mainvisual() {
     <MainvisualWrapper>
       <Container>
         <Slider {...settings}>
-          {movies.map((movie, index) => (
+          {listPopular.map((movie, index) => (
             <MainvisualItem className='sliderItem' key={index}>
               <div className='sliderImage'>
-                <img src={movie.backDrop} alt='' />
+                <img src={movie.backdrop_path} alt='' />
               </div>
               <MainvisualInfo>
                 <Container>
@@ -79,6 +51,17 @@ function Mainvisual() {
                   <MainVisualMovieTitle variant='h4'>
                     {movie.title}
                   </MainVisualMovieTitle>
+                  <MainVisualScore>
+                    <box-icon
+                      name='star'
+                      type='solid'
+                      color='#ffe700'
+                      size='lg'
+                    ></box-icon>
+                    <Typography variant='h3' component='p'>
+                      {movie.vote_average}
+                    </Typography>
+                  </MainVisualScore>
                   <Typography variant='body1' className='sliderDescription'>
                     {movie.overview}
                   </Typography>
