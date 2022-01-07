@@ -16,10 +16,6 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  defaultSectionMargin,
-  defaultSectionMarginMobile,
-} from "../../../GlobalMUI";
 import Logo from "../../Logo/Logo";
 import { ButtonLogin } from "./Header.elements";
 
@@ -90,12 +86,6 @@ const Header = () => {
   return (
     <AppBar
       position='static'
-      sx={{
-        marginBottom: {
-          xs: defaultSectionMarginMobile,
-          md: defaultSectionMargin,
-        },
-      }}
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>

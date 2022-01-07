@@ -3,19 +3,21 @@ import { Container, FormControl, FormHelperText, OutlinedInput, Checkbox, Button
 InputAdornment, TextField, Typography,IconButton, styled } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { width } from "@mui/system";
+const image = require('../../background-login.png')
 
 export const LoginContainer = styled(Container)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: '65px 0'
+  padding: '85px 0',
+  minWidth: '100%',
+  backgroundImage: `url(${image})`
 })
 export const LoginForm = styled(FormControl)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  background: "#9E9E9E",
+  background: "#FFFFFF",
   width: '400px',
   padding: '20px 0',
   '.text-field-form': {
@@ -63,9 +65,13 @@ function Login() {
     event.preventDefault();
   };
 
+  const handlerOnSubmit = () => {
+    window.location.href = '/'
+  }
+
   return (
   <LoginContainer>
-    <LoginForm>
+    <LoginForm onSubmit={handlerOnSubmit}>
       <div style={{ padding : '20px'}}>
         <Typography variant='h4' style={{ color: "#000", fontWeight: " bold" }}>ĐĂNG NHẬP</Typography>
         <div style={{ display: "flex" }}>
@@ -76,7 +82,7 @@ function Login() {
       <div style={{padding: '25px', width: '100%'}}>
         <TextField className="text-field-form" fullWidth placeholder="Email" name="email"  onChange={handleChange('email')}></TextField>
         <OutlinedInput
-          fullWidth placeholder="Password" 
+          fullWidth placeholder="Mật khẩu" 
           name="password" 
           type={information.showPassword ? 'text' : 'password'}
           onChange={handleChange('password')}
