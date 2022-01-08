@@ -1,9 +1,9 @@
-import React from "react";
-import Slider from "react-slick";
-import MovieItem from "../MovieItem/MovieItem";
-import NextArrow from "../NextArrow/NextArrow";
-import PrevArrow from "../PrevArrow/PrevArrow";
-import Section from "../Section/Section";
+import React from 'react';
+import Slider from 'react-slick';
+import MovieItem from '../MovieItem/MovieItem';
+import NextArrow from '../NextArrow/NextArrow';
+import PrevArrow from '../PrevArrow/PrevArrow';
+import Section from '../Section/Section';
 
 function MovieSlider({ title, movies, loading = false }) {
   const slider = React.useRef(null);
@@ -47,9 +47,17 @@ function MovieSlider({ title, movies, loading = false }) {
   return (
     <>
       <Section title={title}>
-        <PrevArrow onClick={() => slider?.current?.slickPrev()} />
-        <NextArrow onClick={() => slider?.current?.slickNext()} />
-        <Slider {...newSettings} ref={slider}>
+        <PrevArrow
+          prev={'-20px'}
+          prevmb={'-15px'}
+          onClick={() => slider?.current?.slickPrev()}
+        />
+        <NextArrow
+          next={'-20px'}
+          nextmb={'-15px'}
+          onClick={() => slider?.current?.slickNext()}
+        />
+        <Slider {...newSettings} ref={slider} className="movie-slider">
           {loading
             ? [0, 0, 0, 0, 0, 0].map((_, i) => (
                 <MovieItem key={i} loading={true} />

@@ -1,22 +1,33 @@
-.slick-slider {
+.movie-slider .slick-slider {
   overflow: hidden !important;
 }
 
-.slick-list {
+.movie-slider .slick-list {
   margin: 0 -12px !important;
 }
 .slick-track {
   display: flex !important;
 }
 
-.slick-slide {
+.movie-slider .slick-slide {
   height: inherit !important;
 }
-.slide {
+.movie-slider .slide {
   height: 100%;
 }
 .slick-slide > div {
   height: 100%;
+}
+.slick-slide > div {
+  height: 100%;
+}
+
+.category-carousel .slick-track {
+  align-items: center;
+}
+
+.category-carousel .slick-slide > div {
+  display: flex !important;
 }
 
 a {

@@ -1,115 +1,175 @@
-import React, { useState } from "react";
-import { Container, FormControl, FormHelperText, OutlinedInput, Checkbox, Button,
-InputAdornment, TextField, Typography,IconButton, styled } from "@mui/material";
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-const image = require('../../background-login.png')
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Box,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+  FormHelperText,
+} from '@mui/material';
+import React, { useState } from 'react';
+import {
+  BackgroundImage,
+  BackgroundOverlay,
+  FormWrapper,
+  FromGroup,
+  FromSubtitle,
+  FromTitle,
+  LinkElement,
+} from '../../GlobalElements';
+import { theme } from '../../GlobalMUI';
+import { LoginContainer, LoginWrapper } from './Login.elements';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-export const LoginContainer = styled(Container)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: '85px 0',
-  minWidth: '100%',
-  backgroundImage: `url(${image})`
-})
-export const LoginForm = styled(FormControl)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  background: "#FFFFFF",
-  width: '400px',
-  padding: '20px 0',
-  '.text-field-form': {
-    paddingBottom: '25px' 
-  },
-  '.checkbox': {
-    margin: 0
-  },
-  '.forgot-password': {
-    alignSelf: 'center',
-    position: 'absolute',
-    right: 0,
-    marginRight: '21px',
-    color: '#000000',
-    textDecoration: 'underline',
-  },
-  '.login-button': {
-    background: '#112D4E',
-    color: '#fff',
-    fontSize: '16px',
-    textAlign: 'center',
-    width: '100%',
-    border: '4px'
-  }
-})
-function Login() {
-  const [information, setInformation] = useState({
-    email:'',
-    password:'',
-    showPassword: false
+const image = require('../../background-login.png');
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email('Địa chỉ email không hợp lệ')
+      .required('Vui lòng nhập email'),
+    password: yup
+      .string()
+      .required('Vui lòng nhập mật khẩu')
+      .min(6, 'Mật khẩu tối thiểu 6 kí tự'),
   })
+  .required();
 
-  const handleChange = (prop) => (event) => {
-    setInformation({ ...information, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setInformation({
-      ...information,
-      showPassword: !information.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
+function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+  });
+  const mouseDownHandler = (event) => {
     event.preventDefault();
   };
-
-  const handlerOnSubmit = () => {
-    window.location.href = '/'
-  }
-
+  const showPasswordHandler = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+  const onSubmit = (data) => console.log(data);
   return (
-  <LoginContainer>
-    <LoginForm onSubmit={handlerOnSubmit}>
-      <div style={{ padding : '20px'}}>
-        <Typography variant='h4' style={{ color: "#000", fontWeight: " bold" }}>ĐĂNG NHẬP</Typography>
-        <div style={{ display: "flex" }}>
-          <Typography variant='h8' style={{ color: "#9E9E9E",}}>Chưa có tài khoản? &nbsp;</Typography>
-          <a style={{color: "#112D4E", textDecoration: "underline"}} href='/register'>Đăng kí</a>
-        </div>
-      </div>
-      <div style={{padding: '25px', width: '100%'}}>
-        <TextField className="text-field-form" fullWidth placeholder="Email" name="email"  onChange={handleChange('email')}></TextField>
-        <OutlinedInput
-          fullWidth placeholder="Mật khẩu" 
-          name="password" 
-          type={information.showPassword ? 'text' : 'password'}
-          onChange={handleChange('password')}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                style={{height: '95%'}}
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {information.showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          />
-          <div style={{display: 'flex', textAlign: 'center', paddingBottom: '10px'}}>
-            <Checkbox className="checkbox"/>
-            <p style={{fontWeight: 'bold', fontStyle: '12px'}}>GHI NHỚ</p>
-            <a className="forgot-password" href='/forgot'>QUÊN TÀI KHOẢN</a>
-          </div>
-          <Button className="login-button">ĐĂNG NHẬP</Button>
-      </div>
-    </LoginForm>
-  </LoginContainer>
-  )
+    <div>
+      <BackgroundImage image={image}>
+        <BackgroundOverlay />
+      </BackgroundImage>
+      <LoginWrapper>
+        <LoginContainer>
+          <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+            <FromTitle>Đăng Nhập</FromTitle>
+            <FromSubtitle>
+              Chưa có tài khoản?
+              <LinkElement
+                color={theme.palette.primary.main}
+                style={{ fontSize: 16 }}
+                to="/register">
+                {' '}
+                Đăng kí
+              </LinkElement>
+            </FromSubtitle>
+            <FromGroup fullWidth margin="normal">
+              <Controller
+                name="email"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    type="email"
+                    error={!!errors.email}
+                    label="Email"
+                    helperText={errors.email ? errors.email.message : ''}
+                    fullWidth
+                    autoFocus
+                  />
+                )}></Controller>
+            </FromGroup>
+            <FromGroup fullWidth margin="normal" error={!!errors.password}>
+              <InputLabel htmlFor="password">Mật khẩu</InputLabel>
+              <Controller
+                name="password"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <OutlinedInput
+                    {...field}
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={showPasswordHandler}
+                          onMouseDown={mouseDownHandler}
+                          edge="end">
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  />
+                )}></Controller>
+              <FormHelperText color="secondary">
+                {errors.password?.message}
+              </FormHelperText>
+            </FromGroup>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: theme.spacing(3),
+              }}>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="GHI NHỚ"
+                sx={{
+                  span: {
+                    fontSize: {
+                      xs: 12,
+                      md: 14,
+                    },
+
+                    fontWeight: 600,
+                  },
+                }}
+              />
+              <LinkElement
+                to="/forgot-password"
+                sx={{
+                  fontSize: {
+                    xs: 12,
+                    md: 14,
+                  },
+                }}>
+                QUÊN TÀI KHOẢN?
+              </LinkElement>
+            </Box>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+              disabled={!!errors.email || !!errors.password}>
+              Đăng Nhập
+            </Button>
+          </FormWrapper>
+        </LoginContainer>
+      </LoginWrapper>
+    </div>
+  );
 }
 
 export default Login;
