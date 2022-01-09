@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import CustomModal from '../CustomModal/CustomModal';
 import NextArrow from '../NextArrow/NextArrow';
@@ -7,14 +7,21 @@ import Section from '../Section/Section';
 import TrailerItem from '../TrailerItem/TrailerItem';
 import ReactPlayer from 'react-player';
 import { ReactPlayerWrapper } from './Trailers.elements';
-let player = null;
+
 const youtubeTemplate = 'https://www.youtube.com/watch?v=';
 const vimeoTemplate = 'https://player.vimeo.com/video/';
 function Trailers({ trailers, loading = false }) {
-  const [openModal, setOpenModal] = React.useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [url, setUrl] = useState('');
 
-  const openModalHandler = () => {
-    setOpenModal(true);
+  const openModalHandler = (trailer) => {
+    console.log(trailer);
+    if (trailer) {
+      if (trailer.site.toLowerCase() === 'youtube')
+        setUrl(youtubeTemplate + trailer.key);
+      else setUrl(vimeoTemplate + trailer.key);
+      setOpenModal(true);
+    }
   };
   const closeModalHandler = () => {
     setOpenModal(false);
@@ -22,7 +29,7 @@ function Trailers({ trailers, loading = false }) {
   const slider = React.useRef(null);
   const newSettings = {
     dots: false,
-    infinite: trailers.length >= 3 ? true : false,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -32,7 +39,7 @@ function Trailers({ trailers, loading = false }) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: trailers.length >= 2 ? true : false,
+          infinite: false,
         },
       },
       {
@@ -40,7 +47,7 @@ function Trailers({ trailers, loading = false }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: trailers.length >= 1 ? true : false,
+          infinite: false,
         },
       },
     ],
@@ -51,11 +58,12 @@ function Trailers({ trailers, loading = false }) {
       <CustomModal open={openModal} onClose={closeModalHandler}>
         <ReactPlayerWrapper>
           <ReactPlayer
-            url={vimeoTemplate + '284666413'}
+            url={url}
             height="100%"
             width="100%"
             className="react-player"
             controls
+            playing
           />
         </ReactPlayerWrapper>
       </CustomModal>
@@ -71,11 +79,12 @@ function Trailers({ trailers, loading = false }) {
           onClick={() => slider?.current?.slickNext()}
         />
         <Slider {...newSettings} ref={slider} className="movie-slider">
-          {[0, 0, 0, 0, 0, 0].map((_, i) => (
+          {trailers.map((trailer, i) => (
             <TrailerItem
               key={i}
-              loading={true}
-              onOpenModal={openModalHandler}
+              index={i}
+              loading={loading}
+              onOpenModal={() => openModalHandler(trailer)}
             />
           ))}
         </Slider>

@@ -1,4 +1,4 @@
-import { Autocomplete, Button, TextField, Typography } from '@mui/material';
+import { Autocomplete, Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
@@ -19,7 +19,7 @@ function Home() {
   }, []);
   return (
     <div>
-      <Mainvisual />
+      <Mainvisual loading={loading} />
       <HomeSearchWrapper>
         <Typography
           variant="h5"

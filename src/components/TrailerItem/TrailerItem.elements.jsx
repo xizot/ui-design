@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 import { theme } from '../../GlobalMUI';
 
 export const TrailerItemWrapper = styled('div')({
@@ -37,4 +37,13 @@ export const TrailerItemHover = styled('div')({
   justifyContent: 'center',
   opacity: 0,
   transition: 'all .5s',
+});
+
+export const TrailerItemIndex = styled(Typography)({
+  position: 'absolute',
+  left: theme.spacing(2),
+  top: theme.spacing(1),
+  zIndex: 2,
+  pointerEvents: 'none',
+  color: '#fff',
 });

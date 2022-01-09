@@ -14,8 +14,9 @@ import {
   SliderPaging,
   SliderPagingItem,
 } from './Mainvisual.elements';
+import MainvisualSkeleton from './MainvisualSkeleton';
 
-function Mainvisual() {
+function Mainvisual({ loading }) {
   const settings = {
     dots: true,
     fade: true,
@@ -40,47 +41,51 @@ function Mainvisual() {
     <MainvisualWrapper>
       <Container>
         <Slider {...settings}>
-          {listPopular.map((movie, index) => (
-            <MainvisualItem className="sliderItem" key={index}>
-              <div className="sliderImage">
-                <img src={movie.backdrop_path} alt="" />
-              </div>
-              <MainvisualInfo>
-                <Container>
-                  <MainVisualLabel variant="h5">PHIM NỔI BẬT</MainVisualLabel>
-                  <MainVisualMovieTitle variant="h4">
-                    {movie.title}
-                  </MainVisualMovieTitle>
-                  <MainVisualScore>
-                    <box-icon
-                      name="star"
-                      type="solid"
-                      color="#ffe700"
-                      size="lg"></box-icon>
-                    <Typography variant="h3" component="p">
-                      {movie.vote_average}
+          {loading ? (
+            <MainvisualSkeleton />
+          ) : (
+            listPopular.map((movie, index) => (
+              <MainvisualItem className="sliderItem" key={index}>
+                <div className="sliderImage">
+                  <img src={movie.backdrop_path} alt="" />
+                </div>
+                <MainvisualInfo>
+                  <Container>
+                    <MainVisualLabel variant="h5">PHIM NỔI BẬT</MainVisualLabel>
+                    <MainVisualMovieTitle variant="h4">
+                      {movie.title}
+                    </MainVisualMovieTitle>
+                    <MainVisualScore>
+                      <box-icon
+                        name="star"
+                        type="solid"
+                        color="#ffe700"
+                        size="lg"></box-icon>
+                      <Typography variant="h3" component="p">
+                        {movie.vote_average}
+                      </Typography>
+                    </MainVisualScore>
+                    <Typography variant="body1" className="sliderDescription">
+                      {movie.overview}
                     </Typography>
-                  </MainVisualScore>
-                  <Typography variant="body1" className="sliderDescription">
-                    {movie.overview}
-                  </Typography>
-                  <Link to={`/details/${movie.id}`}>
-                    <ButtonViewDetails
-                      variant="contained"
-                      color="primary"
-                      endIcon={
-                        <box-icon
-                          className="icon"
-                          name="right-arrow-alt"
-                          color="#fff"></box-icon>
-                      }>
-                      Xem Chi Tiết
-                    </ButtonViewDetails>
-                  </Link>
-                </Container>
-              </MainvisualInfo>
-            </MainvisualItem>
-          ))}
+                    <Link to={`/details/${movie.id}`}>
+                      <ButtonViewDetails
+                        variant="contained"
+                        color="primary"
+                        endIcon={
+                          <box-icon
+                            className="icon"
+                            name="right-arrow-alt"
+                            color="#fff"></box-icon>
+                        }>
+                        Xem Chi Tiết
+                      </ButtonViewDetails>
+                    </Link>
+                  </Container>
+                </MainvisualInfo>
+              </MainvisualItem>
+            ))
+          )}
         </Slider>
       </Container>
     </MainvisualWrapper>

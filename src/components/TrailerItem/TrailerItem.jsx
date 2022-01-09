@@ -4,17 +4,20 @@ import {
   TrailerItemContent,
   TrailerItemHover,
   TrailerItemImage,
+  TrailerItemIndex,
   TrailerItemWrapper,
 } from './TrailerItem.elements';
 
-function TrailerItem({ onOpenModal }) {
+function TrailerItem({ onOpenModal, index }) {
   return (
     <TrailerItemWrapper>
       <TrailerItemContent>
+        <TrailerItemIndex variant="h5">{index}</TrailerItemIndex>
         <TrailerItemImage>
           <img
-            src="https://intelligent-yard.surge.sh/assets/images/videos/video-1.jpg"
-            alt=""></img>
+            src={require('../../assets/images/trailer-default.jpg')}
+            alt=""
+          />
         </TrailerItemImage>
         <TrailerItemHover className="on-hover" onClick={onOpenModal}>
           <IconButton>

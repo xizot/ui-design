@@ -1,5 +1,5 @@
 import { Container, Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import {

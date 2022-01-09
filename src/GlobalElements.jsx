@@ -62,5 +62,5 @@ export const BackgroundOverlay = styled('div')({
 });
 
 export const Paragraphy = styled(Typography)({
-  lineHeight: 1.5,
+  lineHeight: 1.78,
 });
