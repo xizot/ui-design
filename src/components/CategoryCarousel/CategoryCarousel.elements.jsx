@@ -31,9 +31,6 @@ export const CategoryCarouselItem = styled('div')({
     WebkitLineClamp: '1',
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: `calc(100% - ${theme.spacing(14)}`,
-    },
     '&:hover': {
       background: theme.palette.primary.main,
       color: '#fff',

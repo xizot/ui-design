@@ -64,7 +64,7 @@ function Mainvisual() {
                   <Typography variant="body1" className="sliderDescription">
                     {movie.overview}
                   </Typography>
-                  <Link to={`/details/${movie._id}`}>
+                  <Link to={`/details/${movie.id}`}>
                     <ButtonViewDetails
                       variant="contained"
                       color="primary"

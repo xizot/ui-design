@@ -14,11 +14,10 @@ import { theme } from '../../GlobalMUI';
 function CategoryCarousel() {
   const slider = React.useRef(null);
   const settings = {
-    dots: false,
     infinite: true,
-    speed: 500,
-    variableWidth: true,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 750,

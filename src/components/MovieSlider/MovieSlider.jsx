@@ -25,16 +25,24 @@ function MovieSlider({ title, movies, loading = false }) {
         },
       },
       {
-        breakpoint: 700,
+        breakpoint: 800,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 3,
           infinite: movies.length >= 3 ? true : false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 620,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: movies.length >= 2 ? true : false,
+        },
+      },
+      {
+        breakpoint: 350,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
