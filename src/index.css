@@ -1,0 +1,54 @@
+.movie-slider .slick-slider {
+  overflow: hidden !important;
+}
+
+.movie-slider .slick-list {
+  margin: 0 -12px !important;
+}
+.slick-track {
+  display: flex !important;
+}
+
+.movie-slider .slick-slide {
+  height: inherit !important;
+}
+.movie-slider .slide {
+  height: 100%;
+}
+.slick-slide > div {
+  height: 100%;
+}
+.slick-slide > div {
+  height: 100%;
+}
+
+.category-carousel .slick-track {
+  align-items: center;
+}
+
+.category-carousel .slick-slide > div {
+  display: flex !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+.img-ratio2x3 {
+  padding-top: calc((3 / 2) * 100%);
+  position: relative;
+}
+.img-ratio2x3 img,
+.img-ratio2x3 .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  display: block;
+}
