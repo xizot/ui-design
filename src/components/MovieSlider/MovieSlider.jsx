@@ -5,7 +5,7 @@ import NextArrow from '../NextArrow/NextArrow';
 import PrevArrow from '../PrevArrow/PrevArrow';
 import Section from '../Section/Section';
 
-function MovieSlider({ title, movies, loading = false }) {
+function MovieSlider({ title, movies, loading }) {
   const slider = React.useRef(null);
   const newSettings = {
     dots: false,
@@ -54,7 +54,7 @@ function MovieSlider({ title, movies, loading = false }) {
 
   return (
     <>
-      <Section title={title}>
+      <Section title={title} loading={loading}>
         <PrevArrow
           prev={'-20px'}
           prevmb={'-15px'}

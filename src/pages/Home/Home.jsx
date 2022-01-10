@@ -155,17 +155,17 @@ function Home() {
       <MovieSlider
         title="TOP PHIM MỚI NHẤt"
         movies={movies.new}
-        loading={loading.new}
+        loading={loading.new ? 1 : 0}
       />
       <MovieSlider
         title="TOP PHIM ĐÁNH GIÁ CAO"
         movies={movies.best}
-        loading={loading.best}
+        loading={loading.best ? 1 : 0}
       />
       <MovieSlider
         title="TOP PHIM KHÔNG NÊN XEM"
         movies={movies.bad}
-        loading={loading.bad}
+        loading={loading.bad ? 1 : 0}
       />
     </div>
   );
