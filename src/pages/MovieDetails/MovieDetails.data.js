@@ -1,4 +1,4 @@
-import { data } from '../../ultis';
+import { data } from "../../ultis";
 export const getDetailsById = async (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

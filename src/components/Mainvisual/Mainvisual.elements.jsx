@@ -1,162 +1,170 @@
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box, Button, Typography, styled } from "@mui/material";
 import {
   defaultSectionMargin,
   defaultSectionMarginMobile,
   theme,
-} from '../../GlobalMUI';
+} from "../../GlobalMUI";
 
-export const MainvisualWrapper = styled('div')({
-  position: 'relative',
+export const MainvisualWrapper = styled("div")({
+  position: "relative",
   marginBottom: defaultSectionMargin,
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down("lg")]: {
     marginBottom: defaultSectionMarginMobile,
   },
-  '& .slick-dots': {
-    position: 'absolute',
+  "& .slick-dots": {
+    position: "absolute",
     bottom: 50,
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: "50%",
+    transform: "translateX(-50%)",
     maxWidth: 1200,
     padding: theme.spacing(0, 2),
-    textAlign: 'right',
+    textAlign: "right",
     zIndex: 2,
-    '& > li': {
+    "& > li": {
       marginRight: theme.spacing(3),
     },
-    '& > li.slick-active .sliderPaging': {
+    "& > li.slick-active .sliderPaging": {
       opacity: 1,
-      background: 'rgba(0,0,0,.6)',
+      background: "rgba(0,0,0,.6)",
       border: `2px solid #cecece`,
-      '&:after': {
+      "&:after": {
         opacity: 1,
       },
     },
   },
 
-  '& .sliderPaging': {},
-  '& .sliderPagingItem': {},
-  '& .sliderItem': {},
-  '& .sliderImage': {
-    width: '100%',
-    height: '100%',
-    '&>img': {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
+  "& .sliderPaging": {},
+  "& .sliderPagingItem": {},
+  "& .sliderItem": {},
+  "& .sliderImage": {
+    width: "100%",
+    height: "100%",
+    "&>img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
     },
-    '&:before': {
+    "&:before": {
       content: "''",
-      position: 'absolute',
+      position: "absolute",
       left: 0,
       top: 0,
-      width: '100%',
-      height: '100%',
-      background: 'rgba(0,0,0,.4)',
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,.4)",
       zIndex: 1,
     },
   },
-  '& .sliderInfo': {},
-  '& .sliderTitle': {},
-  '& .sliderDescription': {
-    display: '-webkit-box',
+  "& .sliderInfo": {},
+  "& .sliderTitle": {},
+  "& .sliderDescription": {
+    display: "-webkit-box",
     WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-    overflow: 'hidden',
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
     opacity: 0.7,
     marginBottom: theme.spacing(5),
     width: 700,
-    maxWidth: '100%',
+    maxWidth: "100%",
     paddingRight: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: theme.spacing(2),
+    },
   },
 });
 
-export const MainvisualItemImage = styled('div')({
-  width: '100%',
-  height: '100%',
+export const MainvisualItemImage = styled("div")({
+  width: "100%",
+  height: "100%",
 
-  '& .img': {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
+  "& .img": {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
 });
 
-export const MainvisualItem = styled('div')({
-  height: '35vh',
+export const MainvisualItem = styled("div")({
+  height: "35vh",
   minHeight: 450,
-  width: '100%',
-  display: 'block',
-  position: 'relative',
+  width: "100%",
+  display: "block",
+  position: "relative",
   zIndex: 2,
 });
 
 export const ButtonViewDetails = styled(Button)({
-  display: 'flex',
-  cursor: 'pointer',
-  alignItems: 'center',
-  width: 'fit-content',
+  display: "flex",
+  cursor: "pointer",
+  alignItems: "center",
+  width: "fit-content",
 });
 
 export const MainvisualInfo = styled(Box)({
-  position: 'absolute',
-  width: '100%',
-  top: '50%',
-  transform: 'translateY(-50%)',
+  position: "absolute",
+  width: "100%",
+  top: "50%",
+  transform: "translateY(-50%)",
   zIndex: 2,
-  color: 'white',
+  color: "white",
   padding: theme.spacing(0, 2),
+  [theme.breakpoints.down("sm")]: {
+    padding: 0,
+  },
 });
 
 export const MainVisualMovieTitle = styled(Typography)({
   fontSize: 50,
-  fontWeight: 'bold',
-  width: '60rem',
-  maxWidth: '100%',
+  fontWeight: "bold",
+  width: "60rem",
+  maxWidth: "100%",
   marginBottom: theme.spacing(1),
-  [theme.breakpoints.down('sm')]: {
-    fontSize: 40,
-  },
-  [theme.breakpoints.down('xs')]: {
-    fontSize: 30,
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 28,
   },
 });
 
 export const MainVisualLabel = styled(Typography)({
+  opacity: 0.8,
   marginBottom: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 20,
+    marginBottom: theme.spacing(1),
+  },
 });
 
-export const SliderPaging = styled('div')({
+export const SliderPaging = styled("div")({
   width: 40,
   height: 40,
-  borderRadius: '50%',
-  textAlign: 'center',
+  borderRadius: "50%",
+  textAlign: "center",
   opacity: 0.6,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative',
-  '&:after': {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  "&:after": {
     opacity: 0,
     content: "''",
-    position: 'absolute',
+    position: "absolute",
     bottom: -10,
-    left: '50%',
-    transform: 'translate(-50%, 100%)',
+    left: "50%",
+    transform: "translate(-50%, 100%)",
     width: 1,
     height: 27,
-    background: '#cecece',
+    background: "#cecece",
   },
 });
 
 export const SliderPagingItem = styled(Typography)({
   fontWeight: 700,
-  fontFamily: 'Archivo Black, sans-serif',
+  fontFamily: "Archivo Black, sans-serif",
   lineHeight: 0,
-  color: '#fff',
+  color: "#fff",
 });
 
-export const MainVisualScore = styled('div')({
-  display: 'flex',
+export const MainVisualScore = styled("div")({
+  display: "flex",
   marginBottom: theme.spacing(1),
-  alignItems: 'center',
+  alignItems: "center",
 });

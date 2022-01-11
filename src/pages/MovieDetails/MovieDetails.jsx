@@ -1,14 +1,16 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import ModScoreItem from '../../components/ModScoreItem/ModScoreItem';
-import { Grid, Skeleton } from '@mui/material';
-import Section from '../../components/Section/Section';
-import MovieInfoItem from '../../components/MovieInfoItem/MovieInfoItem';
-import TotalScore from '../../components/TotalScore/TotalScore';
-import { Paragraphy } from '../../GlobalElements';
-import Actors from '../../components/Actors/Actors';
-import Trailers from '../../components/Trailers/Trailers';
-import { Navigate, useParams } from 'react-router';
-import { getDetailsById } from './MovieDetails.data';
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import ModScoreItem from "../../components/ModScoreItem/ModScoreItem";
+import { Grid, Pagination, Skeleton } from "@mui/material";
+import Section from "../../components/Section/Section";
+import MovieInfoItem from "../../components/MovieInfoItem/MovieInfoItem";
+import TotalScore from "../../components/TotalScore/TotalScore";
+import { Paragraphy } from "../../GlobalElements";
+import Actors from "../../components/Actors/Actors";
+import Trailers from "../../components/Trailers/Trailers";
+import { Navigate, useParams } from "react-router";
+import { getDetailsById } from "./MovieDetails.data";
+import BoxLogin from "../../components/BoxLogin/BoxLogin";
+import { PaginationWapper } from "./MovieDetails.elements";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -31,7 +33,7 @@ function MovieDetails() {
         setDetails({});
       }
     } catch (error) {
-      alert('Đã có lỗi xảy ra');
+      alert("Đã có lỗi xảy ra");
       setError(true);
     }
     setLoading(false);
@@ -47,17 +49,17 @@ function MovieDetails() {
     window.scrollTo(0, 0);
   }, []);
 
-  if (error) return <Navigate to="/" />;
+  if (error) return <Navigate to='/' />;
   return (
     <div>
-      <Section title="Thông tin phim" loading={loading ? 1 : 0}>
+      <Section title='Thông tin phim' loading={loading ? 1 : 0}>
         <Grid container spacing={2}>
           <Grid item xs={6} md={2}>
-            <div className="img-ratio2x3">
+            <div className='img-ratio2x3'>
               {loading ? (
-                <Skeleton variant="rectangular" className="img" />
+                <Skeleton variant='rectangular' className='img' />
               ) : (
-                <img src={details.poster_path} alt="movie image" />
+                <img src={details.poster_path} alt='movie' />
               )}
             </div>
           </Grid>
@@ -75,30 +77,30 @@ function MovieDetails() {
                   </>
                 ) : (
                   <>
-                    <MovieInfoItem title="Tên phim" content={details.title} />
+                    <MovieInfoItem title='Tên phim' content={details.title} />
                     <MovieInfoItem
-                      title="Thời lượng"
+                      title='Thời lượng'
                       content={`${details.runtime} phút`}
                     />
                     <MovieInfoItem
-                      title="Thể loại"
+                      title='Thể loại'
                       content={details.genres
                         ?.map((item) => item.name)
-                        ?.join(', ')}
+                        ?.join(", ")}
                     />
                     <MovieInfoItem
-                      title="Trạng thái"
+                      title='Trạng thái'
                       content={details.status}
                     />
                     <MovieInfoItem
-                      title="Năm sản xuất"
+                      title='Năm sản xuất'
                       content={details.release_date}
                     />
                     <MovieInfoItem
-                      title="Ngôn Ngữ"
+                      title='Ngôn Ngữ'
                       content={details.spoken_languages
                         ?.map((item) => item.name)
-                        ?.join(', ')}
+                        ?.join(", ")}
                     />
                   </>
                 )}
@@ -114,8 +116,8 @@ function MovieDetails() {
           </Grid>
         </Grid>
       </Section>
-      <Section title="Đánh giá từ kamflex" loading={loading ? 1 : 0}>
-        <Grid container spacing={2} alignItems="center">
+      <Section title='Đánh giá từ kamflex' loading={loading ? 1 : 0}>
+        <Grid container spacing={2} alignItems='center'>
           <Grid item xs={12} md={5}>
             {loading ? (
               <>
@@ -128,29 +130,29 @@ function MovieDetails() {
               </>
             ) : (
               <>
-                <ModScoreItem title="Diễn xuất" score={1} />
-                <ModScoreItem title="Nội dung" score={3} />
-                <ModScoreItem title="Hình ảnh" score={2} />
-                <ModScoreItem title="Âm thanh" score={4} />
-                <ModScoreItem title="Kỹ xảo" score={5} />
-                <ModScoreItem title="Tổng kết" score={4} />
+                <ModScoreItem title='Diễn xuất' score={1} />
+                <ModScoreItem title='Nội dung' score={3} />
+                <ModScoreItem title='Hình ảnh' score={2} />
+                <ModScoreItem title='Âm thanh' score={4} />
+                <ModScoreItem title='Kỹ xảo' score={5} />
+                <ModScoreItem title='Tổng kết' score={4} />
               </>
             )}
           </Grid>
-          <Grid item xs={12} md={7} className="col-7 col-sm-12">
+          <Grid item xs={12} md={7} className='col-7 col-sm-12'>
             {loading ? (
               <>
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
+                <Skeleton variant='text' />
               </>
             ) : (
-              <Paragraphy variant="body1">
+              <Paragraphy variant='body1'>
                 Điểm trừ lớn nhất của phim chính là sự hư cấu và vô lý trong các
                 tình tiết của phim. Mặc dù cốt truyện phim mới lạ thú vị nhưng
                 nhiều sự việc trong Bản án từ đia ngục phải nói là quá điêu,
@@ -165,20 +167,20 @@ function MovieDetails() {
           </Grid>
         </Grid>
       </Section>
-      <Section title="Nội dung phim" loading={loading ? 1 : 0}>
+      <Section title='Nội dung phim' loading={loading ? 1 : 0}>
         {loading ? (
           <>
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
+            <Skeleton variant='text' />
           </>
         ) : (
-          <Paragraphy variant="body1">{details.overview}</Paragraphy>
+          <Paragraphy variant='body1'>{details.overview}</Paragraphy>
         )}
       </Section>
 
@@ -193,38 +195,13 @@ function MovieDetails() {
           {trailers?.length > 0 && <Trailers trailers={trailers} />}
         </>
       )}
-
-      <section className="c-section p-reviews">
-        <h3 className="c-section__title c-title">Đánh giá từ người xem</h3>
-        <div className="c-section__content">
-          <div className="p-reviews__login u-shadow-4">
-            <p className="p-reviews__login__text c-paragraphy">
-              Bạn chưa đăng nhập <br />
-              Hãy đăng nhập để gửi đánh giá nhé
-            </p>
-            <button className="p-reviews__login__button c-btn c-btn--primary">
-              Đăng nhập
-            </button>
-          </div>
-          <div id="reviews" />
-          <div className="p-reviews__paginate">
-            <ul className="c-paginate u-center">
-              <li className="c-paginate__prev c-paginate__item">
-                <i className="bx bx-chevron-left" />
-              </li>
-              <li className="c-paginate__item selected c-paginate__num">1</li>
-              <li className="c-paginate__item c-paginate__num">2</li>
-              <li className="c-paginate__item c-paginate__num">3</li>
-              <li className="c-paginate__item u-pe-none">...</li>
-              <li className="c-paginate__item c-paginate__num">7</li>
-              <li className="c-paginate__item c-paginate__num">8</li>
-              <li className="c-paginate__next c-paginate__item">
-                <i className="bx bx-chevron-right" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <Section title='Đánh giá từ người xem' loading={loading ? 1 : 0}>
+        <BoxLogin />
+        <div id='reviews' />
+        <PaginationWapper>
+          <Pagination count={10} shape='rounded' color='primary' />
+        </PaginationWapper>
+      </Section>
     </div>
   );
 }
