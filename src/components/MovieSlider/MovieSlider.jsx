@@ -1,9 +1,9 @@
-import React from 'react';
-import Slider from 'react-slick';
-import MovieItem from '../MovieItem/MovieItem';
-import NextArrow from '../NextArrow/NextArrow';
-import PrevArrow from '../PrevArrow/PrevArrow';
-import Section from '../Section/Section';
+import React from "react";
+import Slider from "react-slick";
+import MovieItem from "../MovieItem/MovieItem";
+import NextArrow from "../NextArrow/NextArrow";
+import PrevArrow from "../PrevArrow/PrevArrow";
+import Section from "../Section/Section";
 
 function MovieSlider({ title, movies, loading }) {
   const slider = React.useRef(null);
@@ -42,7 +42,7 @@ function MovieSlider({ title, movies, loading }) {
         },
       },
       {
-        breakpoint: 350,
+        breakpoint: 360,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -56,18 +56,18 @@ function MovieSlider({ title, movies, loading }) {
     <>
       <Section title={title} loading={loading}>
         <PrevArrow
-          prev={'-20px'}
-          prevmb={'-15px'}
+          prev={"-20px"}
+          prevmb={"-15px"}
           onClick={() => slider?.current?.slickPrev()}
           loading={loading ? 1 : 0}
         />
         <NextArrow
-          next={'-20px'}
-          nextmb={'-15px'}
+          next={"-20px"}
+          nextmb={"-15px"}
           onClick={() => slider?.current?.slickNext()}
           loading={loading ? 1 : 0}
         />
-        <Slider {...newSettings} ref={slider} className="movie-slider">
+        <Slider {...newSettings} ref={slider} className='movie-slider'>
           {loading
             ? [0, 0, 0, 0, 0, 0].map((_, i) => (
                 <MovieItem key={i} loading={loading ? 1 : 0} />

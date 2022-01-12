@@ -41,6 +41,11 @@ img {
   padding-top: calc((3 / 2) * 100%);
   position: relative;
 }
+@media only screen and (max-width: 400) {
+  .img-ratio2x3 {
+    padding-top: calc((3 / 2) * 70%);
+  }
+}
 .img-ratio2x3 img,
 .img-ratio2x3 .img {
   position: absolute;
@@ -51,4 +56,8 @@ img {
   -o-object-fit: cover;
   object-fit: cover;
   display: block;
+}
+
+img {
+  background: #ddd;
 }
