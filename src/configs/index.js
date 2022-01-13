@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import Register from "../pages/Register/Register";
+import Search from "../pages/Search/Search";
 
 export const routes = [
   {
@@ -39,5 +40,12 @@ export const routes = [
     protected: true,
     title: "Rated Page",
     component: Rated,
+  },
+  {
+    path: "/search",
+    exact: true,
+    protected: false,
+    title: "Search Page",
+    component: Search,
   },
 ];

@@ -17,13 +17,13 @@ export const MovieHover = styled(Link)({
   pointerEvents: "none",
 });
 
-export const MovieWrapper = styled("div")({
+export const MovieWrapper = styled("div")((props) => ({
   display: "flex",
   flexDirection: "column",
   height: "100%",
   textDecoration: "none",
   color: "#000",
-  padding: theme.spacing(0, 1.5),
+  padding: props.itemslider ? theme.spacing(0, 1.5) : 0,
   transition: "all .5s",
   position: "relative",
   "& img": {
@@ -39,7 +39,7 @@ export const MovieWrapper = styled("div")({
   "&:hover .movie-title": {
     textDecoration: "underline",
   },
-});
+}));
 
 export const MovieImageWrapper = styled("div")({
   position: "relative",
@@ -60,8 +60,8 @@ export const MovieImage = styled("img")({
   top: 0,
 });
 
-export const MovieContent = styled(Link)({
-  padding: defaultPadding,
+export const MovieContent = styled(Link)((props) => ({
+  padding: !props.size ? theme.spacing(1) : theme.spacing(1.5),
   paddingBottom: 0,
   flex: 1,
   display: "flex",
@@ -69,7 +69,7 @@ export const MovieContent = styled(Link)({
   [theme.breakpoints.down("sm")]: {
     padding: defaultPaddingMobile,
   },
-});
+}));
 
 export const MovieContentText = styled("div")({
   display: "flex",
@@ -112,68 +112,67 @@ export const MovieTimer = styled(Typography)({
 });
 
 export const MovieHoverRated = styled(Link)({
-  position: 'absolute',
+  position: "absolute",
   left: 0,
   top: 0,
-  background: 'rgba(0,0,0,.4)',
-  margin: '60px 10px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: 'all .5s',
+  background: "rgba(0,0,0,.4)",
+  margin: "60px 10px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all .5s",
   opacity: 0,
-  pointerEvents: 'none',
+  pointerEvents: "none",
 });
 
-export const MovieImageWrapperRated = styled('div')({
-  borderRadius: '5px 5px 0 0',
-  overflow: 'hidden',
+export const MovieImageWrapperRated = styled("div")({
+  borderRadius: "5px 5px 0 0",
+  overflow: "hidden",
 });
 
-export const MovieImageRated = styled('img')({
-  width: '150px',
-  height: '150px',
-  objectFit: 'cover',
-  position: 'absolute',
+export const MovieImageRated = styled("img")({
+  width: "150px",
+  height: "150px",
+  objectFit: "cover",
+  position: "absolute",
   left: 0,
   top: 0,
 });
 
-
-export const MovieWrapperRated = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  textDecoration: 'none',
-  color: '#000',
-  height: '150px',
-  border: '1px solid #DDDDDD',
+export const MovieWrapperRated = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  textDecoration: "none",
+  color: "#000",
+  height: "150px",
+  border: "1px solid #DDDDDD",
   padding: theme.spacing(0, 1.5),
-  transition: 'all .5s',
-  position: 'relative',
-  marginBottom: '10px',
-  borderRadius: '4px',
-  '& img': {
-    transition: 'all .5s',
+  transition: "all .5s",
+  position: "relative",
+  marginBottom: "10px",
+  borderRadius: "4px",
+  "& img": {
+    transition: "all .5s",
   },
-  '&:hover .on-hover': {
+  "&:hover .on-hover": {
     opacity: 1,
-    pointerEvents: 'all',
+    pointerEvents: "all",
   },
-  '&:hover .movie-title': {
-    textDecoration: 'underline',
+  "&:hover .movie-title": {
+    textDecoration: "underline",
   },
 });
 
-export const MovieInfomation = styled('div')({
-  position: 'absolute',
-  margin: '10px 160px',
+export const MovieInfomation = styled("div")({
+  position: "absolute",
+  margin: "10px 160px",
 });
 
-export const MovieStart = styled('div')({
-  display: 'flex',
-  marginRight: '5px',
+export const MovieStart = styled("div")({
+  display: "flex",
+  marginRight: "5px",
 });
 
-export const MovieScoreRated = styled('div')({
-  margin: '3px 0 0 3px',
+export const MovieScoreRated = styled("div")({
+  margin: "3px 0 0 3px",
 });

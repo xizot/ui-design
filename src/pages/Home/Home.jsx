@@ -1,20 +1,24 @@
-import { Autocomplete, Button, Skeleton, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useEffect, useState, useCallback } from 'react';
-import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
-import Mainvisual from '../../components/Mainvisual/Mainvisual';
-import MovieSlider from '../../components/MovieSlider/MovieSlider';
-import { theme } from '../../GlobalMUI';
-import { data } from '../../ultis';
+import { Autocomplete, Button, Skeleton, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React, { useEffect, useState, useCallback } from "react";
+import CategoryCarousel from "../../components/CategoryCarousel/CategoryCarousel";
+import Mainvisual from "../../components/Mainvisual/Mainvisual";
+import MovieSlider from "../../components/MovieSlider/MovieSlider";
+import { theme } from "../../GlobalMUI";
+import { data } from "../../ultis";
 import {
   listBadMovies,
   listBestMovies,
   listNewMovies,
   listPopular,
-} from './Home.data';
-import { HomeSearchInput, HomeSearchWrapper } from './Home.elements';
+} from "./Home.data";
+import { HomeSearchInput, HomeSearchWrapper } from "./Home.elements";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const history = useNavigate();
+
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState({
     popular: true,
     new: true,
@@ -27,6 +31,17 @@ function Home() {
     good: [],
     new: [],
   });
+
+  const queryOnKeyPress = (e) => {
+    if (e.charCode === 13) {
+      e.preventDefault();
+      history(`/search?q=${query}`);
+    }
+  };
+  const queryChangeHandler = (e, value) => {
+    console.log(value);
+    setQuery(value);
+  };
   const getListPopularHandler = useCallback(async () => {
     setLoading((prevState) => ({ ...prevState, popular: true }));
     const fetch = await listPopular();
@@ -52,6 +67,12 @@ function Home() {
     setLoading((prevState) => ({ ...prevState, best: false }));
   }, []);
 
+  const btnSearchClickHandler = (e) => {
+    e.preventDefault();
+    if (query.length) {
+      history(`/search?q=${query}`);
+    }
+  };
   useEffect(() => {
     getListPopularHandler();
     getListNewHandler();
@@ -69,38 +90,40 @@ function Home() {
       <HomeSearchWrapper>
         {loading.popular ? (
           <Skeleton
-            variant="text"
+            variant='text'
             height={50}
             sx={{
               minWidth: 250,
-              width: '40%',
-              margin: '0 auto',
+              width: "40%",
+              margin: "0 auto",
               marginBottom: theme.spacing(2),
             }}
           />
         ) : (
           <Typography
-            variant="h5"
-            textAlign="center"
+            variant='h5'
+            textAlign='center'
             sx={{
               marginBottom: theme.spacing(2),
               fontSize: { xs: 18, md: 24 },
-            }}>
+            }}
+          >
             Tìm kiếm một bộ phim bạn muốn
           </Typography>
         )}
         <Box
-          maxWidth="50rem"
-          margin="0 auto"
+          maxWidth='50rem'
+          margin='0 auto'
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {loading.popular ? (
             <>
               <Skeleton
-                variant="rectangular"
+                variant='rectangular'
                 width={120}
                 height={40}
                 sx={{
@@ -113,7 +136,7 @@ function Home() {
                 }}
               />
               <Skeleton
-                variant="rectangular"
+                variant='rectangular'
                 width={120}
                 height={40}
                 sx={{ borderRadius: 9999 }}
@@ -124,8 +147,11 @@ function Home() {
               <Autocomplete
                 freeSolo
                 disableClearable
+                value={query}
+                onChange={queryChangeHandler}
+                onKeyPress={queryOnKeyPress}
                 options={data.map((option) => option.title)}
-                size="small"
+                size='small'
                 sx={{
                   flex: 1,
                   marginRight: { xs: theme.spacing(1), md: theme.spacing(2) },
@@ -135,16 +161,18 @@ function Home() {
                     {...params}
                     InputProps={{
                       ...params.InputProps,
-                      type: 'search',
+                      type: "search",
                     }}
                   />
                 )}
               />
               <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                sx={{ borderRadius: 9999 }}>
+                variant='contained'
+                color='primary'
+                size='large'
+                sx={{ borderRadius: 9999 }}
+                onClick={btnSearchClickHandler}
+              >
                 Tìm kiếm
               </Button>
             </>
@@ -153,17 +181,17 @@ function Home() {
       </HomeSearchWrapper>
       <CategoryCarousel />
       <MovieSlider
-        title="TOP PHIM MỚI NHẤt"
+        title='TOP PHIM MỚI NHẤt'
         movies={movies.new}
         loading={loading.new ? 1 : 0}
       />
       <MovieSlider
-        title="TOP PHIM ĐÁNH GIÁ CAO"
+        title='TOP PHIM ĐÁNH GIÁ CAO'
         movies={movies.best}
         loading={loading.best ? 1 : 0}
       />
       <MovieSlider
-        title="TOP PHIM KHÔNG NÊN XEM"
+        title='TOP PHIM KHÔNG NÊN XEM'
         movies={movies.bad}
         loading={loading.bad ? 1 : 0}
       />
