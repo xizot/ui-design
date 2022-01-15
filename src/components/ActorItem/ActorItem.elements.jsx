@@ -5,7 +5,7 @@ export const ActorItemWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   padding: theme.spacing(0, 1),
-  width: 150,
+  width: '100%',
   maxWidth: '100%',
   height: '100%',
 });

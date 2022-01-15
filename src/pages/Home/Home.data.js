@@ -35,6 +35,14 @@ export const listBadMovies = () => {
     }, 1000);
   });
 };
+
+export const listManyReviews = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data.sort((a, b) => b.vote_count - a.vote_count).slice(0, 10));
+    }, 1000);
+  });
+};
 export const listPopular = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

@@ -1,15 +1,15 @@
-import { Container, Box, Skeleton } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
+import { Container, Box, Skeleton } from '@mui/material';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 import {
   CategoryCarouselItem,
   CategoryCarouselWrapper,
-} from "./CategoryCarousel.elements";
-import NextArrow from "../NextArrow/NextArrow";
-import PrevArrow from "../PrevArrow/PrevArrow";
-import { getListCategory } from "./CategoryCarousel.data";
-import { theme } from "../../GlobalMUI";
+} from './CategoryCarousel.elements';
+import NextArrow from '../NextArrow/NextArrow';
+import PrevArrow from '../PrevArrow/PrevArrow';
+import { getListCategory } from './CategoryCarousel.data';
+import { theme } from '../../GlobalMUI';
 
 function CategoryCarousel() {
   const slider = React.useRef(null);
@@ -20,6 +20,7 @@ function CategoryCarousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
+    swipeToSlide: false,
     responsive: [
       {
         breakpoint: 750,
@@ -53,26 +54,25 @@ function CategoryCarousel() {
     getListGenresHandler();
   }, [getListGenresHandler]);
   return (
-    <CategoryCarouselWrapper className='category-carousel'>
+    <CategoryCarouselWrapper className="category-carousel">
       <Container>
         <Box
-          position='relative'
+          position="relative"
           sx={{
             padding: {
               xs: theme.spacing(0, 5),
               md: theme.spacing(0, 7),
             },
-          }}
-        >
+          }}>
           <PrevArrow
-            prev={"0px"}
-            prevmb={"0px"}
+            prev={'0px'}
+            prevmb={'0px'}
             onClick={() => slider?.current?.slickPrev()}
             loading={loading ? 1 : 0}
           />
           <NextArrow
-            next={"0px"}
-            nextmb={"0px"}
+            next={'0px'}
+            nextmb={'0px'}
             onClick={() => slider?.current?.slickNext()}
             loading={loading ? 1 : 0}
           />
@@ -80,7 +80,7 @@ function CategoryCarousel() {
             {loading
               ? [0, 0, 0, 0, 0, 0, 0, 0].map((_, i) => (
                   <CategoryCarouselItem key={i}>
-                    <Skeleton variant='text' width={100} height='100%' />
+                    <Skeleton variant="text" width={100} height="100%" />
                   </CategoryCarouselItem>
                 ))
               : genres.map((genre, i) => (

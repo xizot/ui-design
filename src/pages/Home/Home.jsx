@@ -1,35 +1,38 @@
-import { Autocomplete, Button, Skeleton, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React, { useEffect, useState, useCallback } from "react";
-import CategoryCarousel from "../../components/CategoryCarousel/CategoryCarousel";
-import Mainvisual from "../../components/Mainvisual/Mainvisual";
-import MovieSlider from "../../components/MovieSlider/MovieSlider";
-import { theme } from "../../GlobalMUI";
-import { data } from "../../ultis";
+import { Autocomplete, Button, Skeleton, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import React, { useEffect, useState, useCallback } from 'react';
+import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
+import Mainvisual from '../../components/Mainvisual/Mainvisual';
+import MovieSlider from '../../components/MovieSlider/MovieSlider';
+import { theme } from '../../GlobalMUI';
+import { data } from '../../ultis';
 import {
   listBadMovies,
   listBestMovies,
   listNewMovies,
   listPopular,
-} from "./Home.data";
-import { HomeSearchInput, HomeSearchWrapper } from "./Home.elements";
-import { useNavigate } from "react-router-dom";
+  listManyReviews,
+} from './Home.data';
+import { HomeSearchInput, HomeSearchWrapper } from './Home.elements';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const history = useNavigate();
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [loading, setLoading] = useState({
     popular: true,
     new: true,
     best: true,
     bad: true,
+    manyReviews: true,
   });
   const [movies, setMovies] = useState({
     popular: [],
     bad: [],
     good: [],
     new: [],
+    manyReviews: [],
   });
 
   const queryOnKeyPress = (e) => {
@@ -54,6 +57,12 @@ function Home() {
     setMovies((prevState) => ({ ...prevState, bad: fetch }));
     setLoading((prevState) => ({ ...prevState, bad: false }));
   }, []);
+  const getListManyReviewsHandler = useCallback(async () => {
+    setLoading((prevState) => ({ ...prevState, manyReviews: true }));
+    const fetch = await listManyReviews();
+    setMovies((prevState) => ({ ...prevState, manyReviews: fetch }));
+    setLoading((prevState) => ({ ...prevState, manyReviews: false }));
+  }, []);
   const getListNewHandler = useCallback(async () => {
     setLoading((prevState) => ({ ...prevState, new: true }));
     const fetch = await listNewMovies();
@@ -77,12 +86,13 @@ function Home() {
     getListPopularHandler();
     getListNewHandler();
     getListBestHandler();
-    getListBadHandler();
+    //getListBadHandler();
+    getListManyReviewsHandler();
   }, [
     getListPopularHandler,
     getListNewHandler,
     getListBestHandler,
-    getListBadHandler,
+    getListManyReviewsHandler,
   ]);
   return (
     <div>
@@ -90,40 +100,38 @@ function Home() {
       <HomeSearchWrapper>
         {loading.popular ? (
           <Skeleton
-            variant='text'
+            variant="text"
             height={50}
             sx={{
               minWidth: 250,
-              width: "40%",
-              margin: "0 auto",
+              width: '40%',
+              margin: '0 auto',
               marginBottom: theme.spacing(2),
             }}
           />
         ) : (
           <Typography
-            variant='h5'
-            textAlign='center'
+            variant="h5"
+            textAlign="center"
             sx={{
               marginBottom: theme.spacing(2),
               fontSize: { xs: 18, md: 24 },
-            }}
-          >
+            }}>
             Tìm kiếm một bộ phim bạn muốn
           </Typography>
         )}
         <Box
-          maxWidth='50rem'
-          margin='0 auto'
+          maxWidth="40rem"
+          margin="0 auto"
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           {loading.popular ? (
             <>
               <Skeleton
-                variant='rectangular'
+                variant="rectangular"
                 width={120}
                 height={40}
                 sx={{
@@ -136,7 +144,7 @@ function Home() {
                 }}
               />
               <Skeleton
-                variant='rectangular'
+                variant="rectangular"
                 width={120}
                 height={40}
                 sx={{ borderRadius: 9999 }}
@@ -151,7 +159,7 @@ function Home() {
                 onChange={queryChangeHandler}
                 onKeyPress={queryOnKeyPress}
                 options={data.map((option) => option.title)}
-                size='small'
+                size="small"
                 sx={{
                   flex: 1,
                   marginRight: { xs: theme.spacing(1), md: theme.spacing(2) },
@@ -161,18 +169,17 @@ function Home() {
                     {...params}
                     InputProps={{
                       ...params.InputProps,
-                      type: "search",
+                      type: 'search',
                     }}
                   />
                 )}
               />
               <Button
-                variant='contained'
-                color='primary'
-                size='large'
+                variant="contained"
+                color="primary"
+                size="large"
                 sx={{ borderRadius: 9999 }}
-                onClick={btnSearchClickHandler}
-              >
+                onClick={btnSearchClickHandler}>
                 Tìm kiếm
               </Button>
             </>
@@ -181,19 +188,19 @@ function Home() {
       </HomeSearchWrapper>
       <CategoryCarousel />
       <MovieSlider
-        title='TOP PHIM MỚI NHẤt'
+        title="TOP PHIM MỚI NHẤt"
         movies={movies.new}
         loading={loading.new ? 1 : 0}
       />
       <MovieSlider
-        title='TOP PHIM ĐÁNH GIÁ CAO'
+        title="TOP PHIM ĐÁNH GIÁ CAO"
         movies={movies.best}
         loading={loading.best ? 1 : 0}
       />
       <MovieSlider
-        title='TOP PHIM KHÔNG NÊN XEM'
-        movies={movies.bad}
-        loading={loading.bad ? 1 : 0}
+        title="TOP PHIM NHIỀU NGƯỜI ĐÁNH GIÁ"
+        movies={movies.manyReviews}
+        loading={loading.manyReviews ? 1 : 0}
       />
     </div>
   );

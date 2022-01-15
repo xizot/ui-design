@@ -9,11 +9,20 @@ import Section from '../Section/Section';
 function Actors({ actors, loading = false }) {
   const slider = React.useRef(null);
   const newSettings = {
-    infinite: actors?.length > 8 ? true : false,
-    slidesToShow: actors?.length > 8 ? 1 : 8,
-    slidesToScroll: actors?.length > 8 ? 1 : 8,
-    variableWidth: actors?.length > 8 ? true : false,
+    infinite: actors?.length > 7 ? true : false,
+    slidesToShow: 7,
+    slidesToScroll: 7,
+    variableWidth: false,
     responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+          variableWidth: false,
+          slidesToScroll: 4,
+          infinite: actors?.length >= 4 ? true : false,
+        },
+      },
       {
         breakpoint: 350,
         settings: {
@@ -51,7 +60,7 @@ function Actors({ actors, loading = false }) {
                 key={i}
                 imgSrc={actor.profile_path}
                 name={actor.name}
-                position={actor.known_for_department}
+                position={actor.character}
               />
             ))}
       </Slider>

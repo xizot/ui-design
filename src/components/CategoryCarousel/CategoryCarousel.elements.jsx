@@ -14,13 +14,15 @@ export const CategoryCarouselWrapper = styled('div')({
 
 export const CategoryCarouselItem = styled('div')({
   height: 35,
+  margin: theme.spacing(1, 0),
   lineHeight: '35px',
   padding: theme.spacing(0, 1),
   '& a': {
     color: theme.palette.primary.main,
     padding: theme.spacing(0, 2),
     borderRadius: 999,
-    background: '#ddd',
+    background: '#DBE2EF',
+    border: `1px solid ${theme.palette.primary.main}`,
     width: '100%',
     transition: 'all .5s',
     textAlign: 'center',

@@ -8,7 +8,7 @@ import {
   TrailerItemWrapper,
 } from './TrailerItem.elements';
 
-function TrailerItem({ onOpenModal, index, loading }) {
+function TrailerItem({ imgSrc, onOpenModal, index, loading }) {
   return (
     <TrailerItemWrapper>
       <TrailerItemContent>
