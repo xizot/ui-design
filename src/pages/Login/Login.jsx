@@ -11,7 +11,7 @@ import {
   TextField,
   FormHelperText,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BackgroundImage,
   BackgroundOverlay,
@@ -46,6 +46,7 @@ const schema = yup
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
+  const [authen, setAuthe] = useState(null)
   const {
     control,
     handleSubmit,
@@ -70,9 +71,16 @@ function Login() {
     }
   };
 
+  useEffect(() => {
+    const auth = localStorage.getItem('email')
+    if(auth){
+      setAuthe(auth)
+    }
+  }, [authen]);
+
   return (
     <div>
-      { error ? (
+      { error && !authen? (
         <InstantMessage
           status="error"
           message='Đăng nhập không thành công'

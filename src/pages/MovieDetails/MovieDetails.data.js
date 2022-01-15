@@ -16,7 +16,7 @@ export const getFakeReview = () => {
     {
       score: 5.1,
       name: 'Nguyễn Văn Thắng',
-      img:'https://chiase24.com/wp-content/uploads/2019/06/Tong-hop-cac-hinh-anh-meo-con-cute-de-thuong-4-1.jpg',
+      img: null,
       review: 'Phim khá hay tui lúc đầu hơi khó hiểu nhưng cố gắng gắn kết câu chuyện thì không hiểu thật',
       numberLike: 1,
       numberDislike: 10,

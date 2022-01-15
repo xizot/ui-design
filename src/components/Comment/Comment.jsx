@@ -9,7 +9,7 @@ export const CommentContainer = styled("div")({
     boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
     borderRadius: '4px',
     marginBottom: '21px',
-    height: '160px',
+    height: '165px',
 });
 
 export const Info = styled("div")({
@@ -42,7 +42,21 @@ export const Info = styled("div")({
 });
 
 export const Review = styled("div")({
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    ".report":{
+        marginRight: '30px',
+        padding: '3px',
+        position: 'absolute',
+        right: 0
+    },
+    ".date": {
+        fontSize: '14px',
+        fontWeight: 'bold',
+        marginRight: '30px',
+        padding: '3px',
+        position: 'absolute',
+        right: 0
+    }
 });
 
 function Comment({ score, name, img, review, numberLike, numberDislike }) {
@@ -77,20 +91,24 @@ function Comment({ score, name, img, review, numberLike, numberDislike }) {
             </Grid> 
             <Grid item xs={6} md={9}>
                 <Review>
-                    <MovieStart style={{padding: '0'}}>
+                    <MovieStart style={{padding: '0', marginBottom: '10px'}}>
                         <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                         <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                         <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                         <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                         <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                         <MovieScoreRated>{Math.round(score)}/10</MovieScoreRated>
+                        <Button className="report" variant="outlined" color="error">Báo cáo bình luận này</Button>
                     </MovieStart> 
                     <MovieReview>
                         {review}
                     </MovieReview>
+                    {/* <div className="date">
+                        Ngày 21 tháng 12 năm 2021, lúc 23:23
+                    </div> */}
                 </Review>
             </Grid>
-            </Grid>           
+            </Grid>
         </CommentContainer>
     )
 }

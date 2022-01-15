@@ -12,6 +12,7 @@ import { getDetailsById, getFakeReview } from "./MovieDetails.data";
 import BoxLogin from "../../components/BoxLogin/BoxLogin";
 import { PaginationWapper } from "./MovieDetails.elements";
 import Comment from "../../components/Comment/Comment"
+import BoxComment from "../../components/Comment/BoxComment"
 
 function MovieDetails() {
   const { id } = useParams();
@@ -207,7 +208,7 @@ function MovieDetails() {
         </>
       )}
       <Section title='Đánh giá từ người xem' loading={loading ? 1 : 0}>
-        <BoxLogin />
+        {logged ?  <BoxComment /> :  <BoxLogin />}
         <div>
           {review.map((item) => (
               <Comment 
