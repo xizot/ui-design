@@ -19,24 +19,12 @@ export const RatedSearchWrapper = styled(Container)({
 function Rated() {
   const [loading, setLoading] = useState(false);
   const [listMovie, setListMovie] = useState([]);
-  const [listMovieLeft, setListMovieLeft] = useState([]);
-  const [listMovieRight, setListMovieRight] = useState([]);
 
   const getListNewHandler = useCallback(async () => {
     setLoading(true);
     const fetch = await listMovies();
     setListMovie(fetch);
-    const listRight = [];
-    const listLeft = [];
-    fetch.forEach((element, index) => {
-      if (index % 2 === 0) {
-        listRight.push(element);
-      } else {
-        listLeft.push(element);
-      }
-    });
-    setListMovieLeft(listLeft);
-    setListMovieRight(listRight);
+
     setLoading(false);
   }, []);
 
@@ -48,26 +36,16 @@ function Rated() {
     <div style={{ minHeight: '80vh' }}>
       <RatedSearchWrapper>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6}>
-            {listMovieLeft.map((item) => (
+          {listMovie.map((item, i) => (
+            <Grid item xs={6} key={i}>
               <MovieItemRated
                 imgSrc={item.backdrop_path}
                 id={item.id}
                 title={item.title}
                 score={item.vote_average}
               />
-            ))}
-          </Grid>
-          <Grid item xs={6}>
-            {listMovieRight.map((item) => (
-              <MovieItemRated
-                imgSrc={item.backdrop_path}
-                id={item.id}
-                title={item.title}
-                score={item.vote_average}
-              />
-            ))}
-          </Grid>
+            </Grid>
+          ))}
         </Grid>
       </RatedSearchWrapper>
       <Box

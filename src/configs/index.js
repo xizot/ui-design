@@ -1,51 +1,59 @@
-import Rated from "../pages/AUTH/Rated/Rated";
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import MovieDetails from "../pages/MovieDetails/MovieDetails";
-import Register from "../pages/Register/Register";
-import Search from "../pages/Search/Search";
+import Rated from '../pages/AUTH/Rated/Rated';
+import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
+import MovieDetails from '../pages/MovieDetails/MovieDetails';
+import Register from '../pages/Register/Register';
+import Search from '../pages/Search/Search';
+import Logout from '../pages/Logout/Logout';
 
 export const routes = [
   {
-    path: "/",
+    path: '/',
     exact: true,
     protected: false,
-    title: "Home Page",
+    title: 'Trang chủ',
     component: Home,
   },
   {
-    path: "/details/:id",
+    path: '/details/:id',
     exact: true,
     protected: false,
-    title: "Movie Details Page",
+    title: 'Chi tiết phim',
     component: MovieDetails,
   },
   {
-    path: "/login",
+    path: '/login',
     exact: true,
     protected: false,
-    title: "Login Page",
+    title: 'Đăng nhập',
     component: Login,
   },
   {
-    path: "/register",
+    path: '/register',
     exact: true,
     protected: false,
-    title: "Register Page",
+    title: 'Đăng kí',
     component: Register,
   },
   {
-    path: "/rated",
+    path: '/rated',
     exact: true,
     protected: true,
-    title: "Rated Page",
+    title: 'Danh sách đã đánh giá',
     component: Rated,
   },
   {
-    path: "/search",
+    path: '/search',
     exact: true,
     protected: false,
-    title: "Search Page",
+    title: 'Tìm kiếm',
     component: Search,
+  },
+  {
+    path: '/logout',
+    exact: true,
+    protected: false,
+    title: 'Đăng xuất',
+    component: Logout,
   },
 ];

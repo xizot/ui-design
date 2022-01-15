@@ -24,6 +24,7 @@ import {
 } from '../../../GlobalMUI';
 
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const pages = [
   {
@@ -39,7 +40,16 @@ const pages = [
     path: '/rated',
   },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  {
+    title: 'Trang cá nhân',
+    path: '/profile',
+  },
+  {
+    title: 'Đăng xuất',
+    path: '/logout',
+  },
+];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -86,7 +96,7 @@ const Header = () => {
   const history = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [logged, setLogged] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [query, setQuery] = useState('');
   const queryChangeHandler = (e) => {
     setQuery(e.target.value);
@@ -105,21 +115,15 @@ const Header = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (e) => {
+  const handleCloseNavMenu = (e, path) => {
     setAnchorElNav(null);
-    window.location.href = e.path;
+    history(path);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (e, path) => {
     setAnchorElUser(null);
+    history(path);
   };
-
-  useEffect(() => {
-    const username = localStorage.getItem('email');
-    if (username) {
-      setLogged(true);
-    }
-  }, []);
 
   return (
     <AppBar
@@ -161,7 +165,7 @@ const Header = () => {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => setAnchorElNav(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}>
@@ -179,8 +183,10 @@ const Header = () => {
                   />
                 </Search>
               </MenuItem>
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, i) => (
+                <MenuItem
+                  key={i}
+                  onClick={(e) => handleCloseNavMenu(e, page.path)}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -198,10 +204,10 @@ const Header = () => {
           </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, i) => (
               <Button
-                key={page}
-                onClick={() => handleCloseNavMenu(page)}
+                key={i}
+                onClick={(e) => handleCloseNavMenu(e, page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}>
                 {page.title}
               </Button>
@@ -225,7 +231,7 @@ const Header = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0, marginLeft: { xs: 'auto', md: '0' } }}>
-            {logged ? (
+            {isAuthenticated ? (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -249,10 +255,14 @@ const Header = () => {
                     horizontal: 'right',
                   }}
                   open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}>
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                  onClose={() => setAnchorElUser(null)}>
+                  {settings.map((setting, i) => (
+                    <MenuItem
+                      key={i}
+                      onClick={(e) => handleCloseUserMenu(e, setting.path)}>
+                      <Typography textAlign="center">
+                        {setting.title}
+                      </Typography>
                     </MenuItem>
                   ))}
                 </Menu>

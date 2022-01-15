@@ -23,10 +23,13 @@ import {
 } from '../../GlobalElements';
 import { theme } from '../../GlobalMUI';
 import { LoginContainer, LoginWrapper } from './Login.elements';
-import InstantMessage  from '../InstantMessage';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Navigate, useLocation, useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../redux/actions/auth.action';
+import { useSelector } from 'react-redux';
 
 const image = require('../../background-login.png');
 
@@ -46,7 +49,11 @@ const schema = yup
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
-  const [authen, setAuthe] = useState(null)
+  const { search } = useLocation();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const history = useNavigate();
   const {
     control,
     handleSubmit,
@@ -62,34 +69,21 @@ function Login() {
     setShowPassword((prevState) => !prevState);
   };
   const onSubmit = (data) => {
-    if(data.email === "user@gmail.com" && data.password === "123456"){
-      localStorage.setItem("email",data.email);
-      localStorage.setItem("password",data.password);
-      window.location.href = '/'
+    setError(false);
+    if (data.email === 'user@gmail.com' && data.password === '123456') {
+      localStorage.setItem('isAuthenticated', true);
+      dispatch(authActions.loginSuccess());
     } else {
-      setError(true)
+      dispatch(authActions.loginFail());
+      setError(true);
     }
   };
-
-  useEffect(() => {
-    const auth = localStorage.getItem('email')
-    if(auth){
-      setAuthe(auth)
-    }
-  }, [authen]);
-
+  if (isAuthenticated) {
+    var backUrl = new URLSearchParams(search).get('backUrl') || '/';
+    return <Navigate to={backUrl} />;
+  }
   return (
     <div>
-      { error && !authen? (
-        <InstantMessage
-          status="error"
-          message='Đăng nhập không thành công'
-        />
-      ): <InstantMessage
-          status="success"
-          message='Đăng nhập thành công'
-        />
-      }
       <BackgroundImage image={image}>
         <BackgroundOverlay />
       </BackgroundImage>
@@ -153,6 +147,13 @@ function Login() {
                 {errors.password?.message}
               </FormHelperText>
             </FromGroup>
+            {error && (
+              <Box>
+                <FormHelperText error>
+                  Email hoặc mật khẩu không hợp lệ
+                </FormHelperText>
+              </Box>
+            )}
             <Box
               sx={{
                 display: 'flex',
@@ -185,6 +186,7 @@ function Login() {
                 QUÊN TÀI KHOẢN?
               </LinkElement>
             </Box>
+
             <Button
               type="submit"
               variant="contained"

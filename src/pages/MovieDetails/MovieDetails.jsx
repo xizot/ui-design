@@ -12,7 +12,9 @@ import { getDetailsById, getFakeReview } from './MovieDetails.data';
 import BoxLogin from '../../components/BoxLogin/BoxLogin';
 import { PaginationWapper } from './MovieDetails.elements';
 import Comment from '../../components/Comment/Comment';
-import BoxComment from '../../components/Comment/BoxComment';
+import { useSelector } from 'react-redux';
+import BoxEditComment from '../../components/Comment/BoxWriteComment';
+import BoxWriteComment from '../../components/Comment/BoxWriteComment';
 function MovieDetails() {
   const { id } = useParams();
   const [details, setDetails] = useState({});
@@ -22,6 +24,9 @@ function MovieDetails() {
   const [error, setError] = useState(false);
   const [logged, setLogged] = useState(false);
   const [review, setReview] = useState([]);
+  const [hasComment, setHasComment] = useState(false);
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const getMovieDetailHandler = async (id) => {
     try {
@@ -207,7 +212,16 @@ function MovieDetails() {
         </>
       )}
       <Section title="Đánh giá từ người xem" loading={loading ? 1 : 0}>
-        <BoxLogin />
+        {isAuthenticated ? (
+          hasComment ? (
+            <BoxEditComment />
+          ) : (
+            <BoxWriteComment />
+          )
+        ) : (
+          <BoxLogin id={id} />
+        )}
+
         <div>
           {review.map((item, i) => (
             <Comment

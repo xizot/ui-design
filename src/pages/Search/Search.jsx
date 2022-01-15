@@ -28,7 +28,6 @@ function Search() {
     searchHandler(query);
   }, [query, searchHandler]);
 
-  console.log(results);
   return (
     <div style={{ minHeight: '80vh' }}>
       <Container>
