@@ -176,3 +176,31 @@ export const MovieStart = styled("div")({
 export const MovieScoreRated = styled("div")({
   margin: "3px 0 0 3px",
 });
+
+export const MovieContentRated = styled("div")((props) => ({
+  padding: !props.size ? theme.spacing(1) : theme.spacing(1.5),
+  paddingBottom: 0,
+  flex: 1,
+  display: "flex",
+  color: "#000",
+  [theme.breakpoints.down("sm")]: {
+    padding: defaultPaddingMobile,
+  },
+}));
+
+export const MovieReview = styled("div")({
+    margin: '3px 0 0 2px'
+})
+
+export const MovieTitleRated = styled(Link)({
+  fontSize: 16,
+  fontWeight: 600,
+  lineHeight: 1.5,
+  color: "#000",
+  wordBreak: "break-word",
+  marginBottom: theme.spacing(1),
+  display: "-webkit-box",
+  WebkitLineClamp: "3",
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+})

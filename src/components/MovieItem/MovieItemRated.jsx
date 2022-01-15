@@ -1,16 +1,17 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import {
-  MovieContent,
+  MovieContentRated,
   MovieImageRated,
   MovieImageWrapperRated,
-  MovieTitle,
+  MovieTitleRated ,
   MovieWrapperRated,
   MovieContentText,
   MovieHoverRated,
   MovieInfomation,
   MovieScoreRated,
   MovieStart,
+  MovieReview,
 } from './MovieItem.elements';
 import MovieItemSkeleton from './MovieItemSkeleton';
 
@@ -39,9 +40,9 @@ function MovieItemRated({ id, imgSrc, title, loading = false, score }) {
             </MovieHoverRated>
           </MovieImageWrapperRated>
           <MovieInfomation >
-            <MovieContent to={`/details/${id}`}>
+            <MovieContentRated>
                 <MovieContentText>
-                    <MovieTitle className="movie-title">{title}</MovieTitle>
+                    <MovieTitleRated to={`/details/${id}`} className="movie-title" style={{marginLeft: '2px'}}>{title}</MovieTitleRated>
                     <MovieStart>
                       <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                       <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
@@ -50,9 +51,9 @@ function MovieItemRated({ id, imgSrc, title, loading = false, score }) {
                       <box-icon name="star" type="solid" color="#ffe700" size="sm"></box-icon>
                       <MovieScoreRated>{Math.round(score)}/10</MovieScoreRated>
                     </MovieStart>  
-                    <div>Phim hay lắm</div>
+                    <MovieReview>Phim hay lắm</MovieReview>
                 </MovieContentText>
-            </MovieContent>
+            </MovieContentRated>
           </MovieInfomation >
         </>
     )}
