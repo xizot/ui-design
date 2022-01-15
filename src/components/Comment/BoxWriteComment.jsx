@@ -1,9 +1,10 @@
-import { Button, TextField, styled, Rating, Box } from '@mui/material';
-import { defaultPadding, theme } from '../../GlobalMUI';
-
+import { Button, TextField, Rating, Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CommentActions, CommentContainer } from './Comment.element';
+import { useDispatch } from 'react-redux';
+import { ratedActions } from '../../redux/actions/rated.action';
+import { toast } from 'react-toastify';
 
 const labels = {
   0.5: '1/10',
@@ -18,10 +19,37 @@ const labels = {
   5: '10/10',
 };
 
-function BoxWriteComment() {
-  const [value, setValue] = useState(2);
+function BoxWriteComment({ id }) {
+  const [value, setValue] = useState(5);
   const [hover, setHover] = useState(-1);
+  const [comment, setComment] = useState('');
+  const dispatch = useDispatch();
 
+  const commentChangeHandler = (e) => {
+    setComment(e.target.value);
+  };
+
+  const resetCommentHandler = () => {
+    setComment('');
+    setValue(5);
+  };
+
+  const submitRatedHandler = () => {
+    dispatch(
+      ratedActions.postRated({
+        id: +id,
+        comment,
+        score: +value,
+      })
+    );
+    toast.success('Đã gửi bình luận ', { autoClose: 1000 });
+  };
+
+  const onKeyPressHandler = (e) => {
+    if (e.charCode === 13) {
+      submitRatedHandler();
+    }
+  };
   return (
     <CommentContainer>
       <Box
@@ -52,17 +80,25 @@ function BoxWriteComment() {
         rows={3}
         fullWidth
         placeholder="Nhập bình luận của bạn (Không bắt buộc)"
-        sx={{ outline: 'none' }}
+        value={comment}
+        onKeyPress={onKeyPressHandler}
+        onChange={commentChangeHandler}
       />
       <CommentActions>
         <Button
           className="button-child"
           variant="contained"
           color="error"
-          style={{ marginRight: '5px' }}>
+          style={{ marginRight: '5px' }}
+          disabled={!comment.length}
+          onClick={resetCommentHandler}>
           Hủy bỏ
         </Button>
-        <Button className="button-child" variant="contained" color="primary">
+        <Button
+          className="button-child"
+          variant="contained"
+          color="primary"
+          onClick={submitRatedHandler}>
           Gửi
         </Button>
       </CommentActions>

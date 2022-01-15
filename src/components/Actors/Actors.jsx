@@ -24,7 +24,16 @@ function Actors({ actors, loading = false }) {
         },
       },
       {
-        breakpoint: 350,
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 3,
+          variableWidth: false,
+          slidesToScroll: 3,
+          infinite: actors?.length >= 3 ? true : false,
+        },
+      },
+      {
+        breakpoint: 400,
         settings: {
           slidesToShow: 2,
           variableWidth: false,

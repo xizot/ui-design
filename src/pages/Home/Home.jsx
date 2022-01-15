@@ -7,7 +7,7 @@ import MovieSlider from '../../components/MovieSlider/MovieSlider';
 import { theme } from '../../GlobalMUI';
 import { data } from '../../ultis';
 import {
-  listBadMovies,
+  // listBadMovies,
   listBestMovies,
   listNewMovies,
   listPopular,
@@ -51,12 +51,12 @@ function Home() {
     setMovies((prevState) => ({ ...prevState, popular: fetch }));
     setLoading((prevState) => ({ ...prevState, popular: false }));
   }, []);
-  const getListBadHandler = useCallback(async () => {
-    setLoading((prevState) => ({ ...prevState, bad: true }));
-    const fetch = await listBadMovies();
-    setMovies((prevState) => ({ ...prevState, bad: fetch }));
-    setLoading((prevState) => ({ ...prevState, bad: false }));
-  }, []);
+  // const getListBadHandler = useCallback(async () => {
+  //   setLoading((prevState) => ({ ...prevState, bad: true }));
+  //   const fetch = await listBadMovies();
+  //   setMovies((prevState) => ({ ...prevState, bad: fetch }));
+  //   setLoading((prevState) => ({ ...prevState, bad: false }));
+  // }, []);
   const getListManyReviewsHandler = useCallback(async () => {
     setLoading((prevState) => ({ ...prevState, manyReviews: true }));
     const fetch = await listManyReviews();

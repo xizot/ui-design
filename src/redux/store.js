@@ -1,10 +1,12 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import authReducer from './reducers/auth.reducer';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import authReducer from './reducers/auth.reducer';
+import ratedReducer from './reducers/rated.reducer';
 
 const reducers = combineReducers({
   auth: authReducer,
+  rated: ratedReducer,
 });
 
 const middlewares = [thunk, createLogger()];

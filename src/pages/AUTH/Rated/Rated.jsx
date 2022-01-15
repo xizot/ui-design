@@ -5,9 +5,10 @@ import {
   defaultSectionMarginMobile,
   theme,
 } from '../../../GlobalMUI';
-import { listMovies } from './Rated.data';
 import MovieItemRated from '../../../components/MovieItem/MovieItemRated';
 import { PaginationWapper } from '../../MovieDetails/MovieDetails.elements';
+import { useSelector } from 'react-redux';
+import { data } from '../../../ultis';
 
 export const RatedSearchWrapper = styled(Container)({
   margin: `0 auto ${defaultSectionMargin}`,
@@ -18,31 +19,37 @@ export const RatedSearchWrapper = styled(Container)({
 
 function Rated() {
   const [loading, setLoading] = useState(false);
-  const [listMovie, setListMovie] = useState([]);
+  const [combineData, setCombineData] = useState([]);
+  const rated = useSelector((state) => state.rated.data);
 
-  const getListNewHandler = useCallback(async () => {
-    setLoading(true);
-    const fetch = await listMovies();
-    setListMovie(fetch);
+  const fetchDataMovie = useCallback((rated, data) => {
+    if (rated.length > 0) {
+      const combine = rated.reduce((previousValue, currentValue) => {
+        const find = data.find((f) => +f.id === +currentValue.id);
+        return [...previousValue, { ...find, ...currentValue }];
+      }, []);
 
-    setLoading(false);
+      setCombineData(combine);
+    }
   }, []);
 
+  console.log(combineData);
   useEffect(() => {
-    getListNewHandler();
-  }, [getListNewHandler]);
+    fetchDataMovie(rated, data);
+  }, [fetchDataMovie, rated]);
 
   return (
     <div style={{ minHeight: '80vh' }}>
       <RatedSearchWrapper>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {listMovie.map((item, i) => (
-            <Grid item xs={6} key={i}>
+          {combineData.map((item, i) => (
+            <Grid item xs={12} sm={6} key={i}>
               <MovieItemRated
                 imgSrc={item.backdrop_path}
                 id={item.id}
                 title={item.title}
-                score={item.vote_average}
+                score={item.score}
+                comment={item.comment}
               />
             </Grid>
           ))}

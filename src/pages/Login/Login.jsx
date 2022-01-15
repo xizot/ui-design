@@ -11,7 +11,7 @@ import {
   TextField,
   FormHelperText,
 } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   BackgroundImage,
   BackgroundOverlay,
@@ -26,7 +26,7 @@ import { LoginContainer, LoginWrapper } from './Login.elements';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Navigate, useLocation, useNavigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../redux/actions/auth.action';
 import { useSelector } from 'react-redux';
@@ -53,7 +53,6 @@ function Login() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  const history = useNavigate();
   const {
     control,
     handleSubmit,

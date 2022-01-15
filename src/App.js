@@ -7,15 +7,25 @@ import Footer from './components/Layouts/Footer/Footer';
 import Header from './components/Layouts/Header/Header';
 import { routes } from './configs';
 import { authActions } from './redux/actions/auth.action';
+import { ratedActions } from './redux/actions/rated.action';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem('isAuthenticated')) {
       dispatch(authActions.loginSuccess());
     }
+
+    var rated = localStorage.getItem('rated');
+    if (rated) {
+      dispatch(ratedActions.loadRated(JSON.parse(rated)));
+    }
   }, [dispatch]);
   return (
     <div className="App">
+      <ToastContainer />
       <CssBaseline />
       <Header />
       <Routes>

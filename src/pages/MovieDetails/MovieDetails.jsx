@@ -10,10 +10,10 @@ import Trailers from '../../components/Trailers/Trailers';
 import { Navigate, useParams } from 'react-router';
 import { getDetailsById, getFakeReview } from './MovieDetails.data';
 import BoxLogin from '../../components/BoxLogin/BoxLogin';
-import { PaginationWapper } from './MovieDetails.elements';
+import { ImageOverlay, PaginationWapper } from './MovieDetails.elements';
 import Comment from '../../components/Comment/Comment';
 import { useSelector } from 'react-redux';
-import BoxEditComment from '../../components/Comment/BoxWriteComment';
+import BoxEditComment from '../../components/Comment/BoxEditComment';
 import BoxWriteComment from '../../components/Comment/BoxWriteComment';
 function MovieDetails() {
   const { id } = useParams();
@@ -22,12 +22,10 @@ function MovieDetails() {
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [error, setError] = useState(false);
-  const [logged, setLogged] = useState(false);
   const [review, setReview] = useState([]);
+  const rated = useSelector((state) => state.rated.data);
   const [hasComment, setHasComment] = useState(false);
-
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
   const getMovieDetailHandler = async (id) => {
     try {
       setError(false);
@@ -51,24 +49,27 @@ function MovieDetails() {
     if (id) {
       getMovieDetailHandler(id);
     }
+    setReview(getFakeReview);
   }, [id]);
 
   useEffect(() => {
-    setReview(getFakeReview);
-    const username = localStorage.getItem('email');
-    if (username) {
-      setLogged(true);
+    if (rated.find((rate) => +rate.id === +id)) {
+      setHasComment(true);
+    } else {
+      setHasComment(false);
     }
-  }, []);
+  }, [rated, id]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(details);
   if (error) return <Navigate to="/" />;
   return (
     <div>
       <Section title="Thông tin phim" loading={loading ? 1 : 0}>
+        {!loading && <ImageOverlay src={details.backdrop_path} alt="" />}
         <Grid container spacing={2}>
           <Grid item xs={6} md={2}>
             <div className="img-ratio2x3">
@@ -110,7 +111,7 @@ function MovieDetails() {
                     />
                     <MovieInfoItem
                       title="Năm sản xuất"
-                      content={details.release_date}
+                      content={details.release_date?.slice(0, 4)}
                     />
                     <MovieInfoItem
                       title="Ngôn Ngữ"
@@ -214,9 +215,9 @@ function MovieDetails() {
       <Section title="Đánh giá từ người xem" loading={loading ? 1 : 0}>
         {isAuthenticated ? (
           hasComment ? (
-            <BoxEditComment />
+            <BoxEditComment id={id} />
           ) : (
-            <BoxWriteComment />
+            <BoxWriteComment id={id} />
           )
         ) : (
           <BoxLogin id={id} />

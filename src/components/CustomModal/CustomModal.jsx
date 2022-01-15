@@ -1,16 +1,16 @@
 import { Fade, Modal, Box, Backdrop } from '@mui/material';
 
 import * as React from 'react';
+import { theme } from '../../GlobalMUI';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '60rem',
-  bgcolor: 'background.paper',
-  boxShadow: 24,
+  width: 'auto',
   outline: 'none',
+  maxWidth: `calc(100% - ${theme.spacing(2)})`,
 };
 
 function CustomModal({ children, open, onClose }) {

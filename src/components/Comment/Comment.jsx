@@ -1,4 +1,4 @@
-import { Button, Typography, Avatar, Grid, styled } from '@mui/material';
+import { Button, Avatar, Grid, styled } from '@mui/material';
 import React from 'react';
 import { theme } from '../../GlobalMUI';
 import {

@@ -20,7 +20,7 @@ function MovieInfoItem({ title, content, loading = false }) {
       ) : (
         <>
           <Label minWidth={120}>{title}: </Label>
-          <Typography variant="body1" sx={{ flex: 1 }}>
+          <Typography variant="body1" color="primary" sx={{ flex: 1 }}>
             {content}
           </Typography>
         </>
