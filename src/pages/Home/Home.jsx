@@ -188,11 +188,6 @@ function Home() {
       </HomeSearchWrapper>
       <CategoryCarousel />
       <MovieSlider
-        title="TOP PHIM MỚI NHẤt"
-        movies={movies.new}
-        loading={loading.new ? 1 : 0}
-      />
-      <MovieSlider
         title="TOP PHIM ĐÁNH GIÁ CAO"
         movies={movies.best}
         loading={loading.best ? 1 : 0}
@@ -201,6 +196,12 @@ function Home() {
         title="TOP PHIM NHIỀU NGƯỜI ĐÁNH GIÁ"
         movies={movies.manyReviews}
         loading={loading.manyReviews ? 1 : 0}
+      />
+
+      <MovieSlider
+        title="TOP PHIM MỚI NHẤt"
+        movies={movies.new}
+        loading={loading.new ? 1 : 0}
       />
     </div>
   );
