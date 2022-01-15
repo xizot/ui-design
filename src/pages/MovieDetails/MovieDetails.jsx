@@ -8,9 +8,10 @@ import { Paragraphy } from "../../GlobalElements";
 import Actors from "../../components/Actors/Actors";
 import Trailers from "../../components/Trailers/Trailers";
 import { Navigate, useParams } from "react-router";
-import { getDetailsById } from "./MovieDetails.data";
+import { getDetailsById, getFakeReview } from "./MovieDetails.data";
 import BoxLogin from "../../components/BoxLogin/BoxLogin";
 import { PaginationWapper } from "./MovieDetails.elements";
+import Comment from "../../components/Comment/Comment"
 
 function MovieDetails() {
   const { id } = useParams();
@@ -19,6 +20,8 @@ function MovieDetails() {
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [error, setError] = useState(false);
+  const [logged, setLogged] = useState(false)
+  const [review, setReview] = useState([])
 
   const getMovieDetailHandler = async (id) => {
     try {
@@ -44,6 +47,14 @@ function MovieDetails() {
       getMovieDetailHandler(id);
     }
   }, [id]);
+
+  useEffect(() => {
+    setReview(getFakeReview)
+    const username = localStorage.getItem('email');
+    if(username){
+      setLogged(true)
+    }
+  }, []);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -197,7 +208,19 @@ function MovieDetails() {
       )}
       <Section title='Đánh giá từ người xem' loading={loading ? 1 : 0}>
         <BoxLogin />
-        <div id='reviews' />
+        <div>
+          {review.map((item) => (
+              <Comment 
+                score={item.score}
+                name={item.name}
+                img={item.img}
+                review={item.review}
+                numberDislike={item.numberDislike}
+                numberLike={item.numberLike}
+              />
+            ))
+          }
+        </div>
         <PaginationWapper>
           <Pagination count={10} shape='rounded' color='primary' />
         </PaginationWapper>

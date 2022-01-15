@@ -14,7 +14,7 @@ import {
   alpha,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo/Logo";
 import { ButtonLogin } from "./Header.elements";
@@ -99,6 +99,14 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  useEffect(() => {
+    const username = localStorage.getItem('email');
+    if(username){
+      setLogged(true)
+    }
+  }, []);
+
 
   return (
     <AppBar

@@ -23,6 +23,7 @@ import {
 } from '../../GlobalElements';
 import { theme } from '../../GlobalMUI';
 import { LoginContainer, LoginWrapper } from './Login.elements';
+import InstantMessage  from '../InstantMessage';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -44,6 +45,7 @@ const schema = yup
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
   const {
     control,
     handleSubmit,
@@ -58,9 +60,28 @@ function Login() {
   const showPasswordHandler = () => {
     setShowPassword((prevState) => !prevState);
   };
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    if(data.email === "user@gmail.com" && data.password === "123456"){
+      localStorage.setItem("email",data.email);
+      localStorage.setItem("password",data.password);
+      window.location.href = '/'
+    } else {
+      setError(true)
+    }
+  };
+
   return (
     <div>
+      { error ? (
+        <InstantMessage
+          status="error"
+          message='Đăng nhập không thành công'
+        />
+      ): <InstantMessage
+          status="success"
+          message='Đăng nhập thành công'
+        />
+      }
       <BackgroundImage image={image}>
         <BackgroundOverlay />
       </BackgroundImage>
