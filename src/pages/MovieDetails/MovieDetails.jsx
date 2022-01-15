@@ -12,7 +12,7 @@ import { getDetailsById, getFakeReview } from './MovieDetails.data';
 import BoxLogin from '../../components/BoxLogin/BoxLogin';
 import { PaginationWapper } from './MovieDetails.elements';
 import Comment from '../../components/Comment/Comment';
-
+import BoxComment from '../../components/Comment/BoxComment';
 function MovieDetails() {
   const { id } = useParams();
   const [details, setDetails] = useState({});

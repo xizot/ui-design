@@ -74,27 +74,31 @@ function Search() {
                 </Grid>
               ))}
         </Grid>
-        {results.length > 0 ? (
-          <Box
-            sx={{
-              marginBottom: {
-                xs: defaultSectionMarginMobile,
-                md: defaultSectionMargin,
-              },
-            }}>
-            <PaginationWapper>
-              <Pagination count={1} shape="rounded" color="primary" />
-            </PaginationWapper>
-          </Box>
+        {!loading ? (
+          results.length > 0 ? (
+            <Box
+              sx={{
+                marginBottom: {
+                  xs: defaultSectionMarginMobile,
+                  md: defaultSectionMargin,
+                },
+              }}>
+              <PaginationWapper>
+                <Pagination count={1} shape="rounded" color="primary" />
+              </PaginationWapper>
+            </Box>
+          ) : (
+            <Typography
+              variant="h5"
+              sx={{
+                textAlign: 'center',
+                color: 'red',
+              }}>
+              Không có bộ phim liên quan tới từ khóa tìm kiếm.
+            </Typography>
+          )
         ) : (
-          <Typography
-            variant="h5"
-            sx={{
-              textAlign: 'center',
-              color: 'red',
-            }}>
-            Không có bộ phim liên quan tới từ khóa tìm kiếm.
-          </Typography>
+          <></>
         )}
       </Container>
     </div>

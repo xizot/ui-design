@@ -25,7 +25,20 @@ import {
 
 import { useNavigate } from 'react-router-dom';
 
-const pages = ['Phim thịnh hành', 'Mới & phổ biến', 'Danh sách của tôi'];
+const pages = [
+  {
+    title: 'Phim thịnh hành',
+    path: '/',
+  },
+  {
+    title: 'Mới & phổ biến',
+    path: '/',
+  },
+  {
+    title: 'Danh sách của tôi',
+    path: '/rated',
+  },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Search = styled('div')(({ theme }) => ({
@@ -92,8 +105,9 @@ const Header = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
     setAnchorElNav(null);
+    window.location.href = e.path;
   };
 
   const handleCloseUserMenu = () => {
@@ -167,7 +181,7 @@ const Header = () => {
               </MenuItem>
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -187,9 +201,9 @@ const Header = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}>
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
