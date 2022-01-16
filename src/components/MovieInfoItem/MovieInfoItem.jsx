@@ -4,7 +4,14 @@ import { theme } from '../../GlobalMUI';
 import { Label } from '../ModScoreItem/ModScoreItem.elements';
 import { MovieInfoItemWrapper } from './MovieInfoItem.elements';
 
-function MovieInfoItem({ title, content, loading = false }) {
+function MovieInfoItem({
+  title,
+  content,
+  loading = false,
+  hideTitle = false,
+  size = 'normal',
+  color = '#3F72AF',
+}) {
   return (
     <MovieInfoItemWrapper>
       {loading ? (
@@ -19,10 +26,15 @@ function MovieInfoItem({ title, content, loading = false }) {
         </>
       ) : (
         <>
-          <Label minWidth={120}>{title}: </Label>
+          {!hideTitle && <Label minWidth={120}>{title}: </Label>}
           <Typography
             variant="body1"
-            sx={{ flex: 1, color: '#3F72AF', fontWeight: 500 }}>
+            sx={{
+              flex: 1,
+              color: color,
+              fontWeight: size === 'large' ? 600 : 500,
+              fontSize: size === 'large' ? 28 : 16,
+            }}>
             {content}
           </Typography>
         </>

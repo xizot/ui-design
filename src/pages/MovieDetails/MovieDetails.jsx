@@ -93,7 +93,14 @@ function MovieDetails() {
                   </>
                 ) : (
                   <>
-                    <MovieInfoItem title="Tên phim" content={details.title} />
+                    <MovieInfoItem
+                      title="Tên phim"
+                      content={details.title}
+                      hideTitle={1}
+                      size="large"
+                      color="#7C4D4A"
+                    />
+
                     <MovieInfoItem
                       title="Thời lượng"
                       content={`${details.runtime} phút`}
