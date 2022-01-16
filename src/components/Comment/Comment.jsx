@@ -1,11 +1,9 @@
-import { Button, Avatar, Grid, styled } from '@mui/material';
+import Star from '@mui/icons-material/Star';
+import { Box, Avatar, Grid, styled, Rating } from '@mui/material';
 import React from 'react';
 import { theme } from '../../GlobalMUI';
-import {
-  MovieStart,
-  MovieScoreRated,
-  MovieReview,
-} from '../MovieItem/MovieItem.elements';
+import { labels } from '../../ultis/reusable';
+import { MovieReview } from '../MovieItem/MovieItem.elements';
 
 export const CommentContainer = styled('div')({
   padding: theme.spacing(2),
@@ -94,37 +92,20 @@ function Comment({ score, name, img, review, numberLike, numberDislike }) {
         </Grid>
         <Grid item xs={6} md={9}>
           <Review>
-            <MovieStart style={{ padding: '0', marginBottom: '10px' }}>
-              <box-icon
-                name="star"
-                type="solid"
-                color="#ffe700"
-                size="sm"></box-icon>
-              <box-icon
-                name="star"
-                type="solid"
-                color="#ffe700"
-                size="sm"></box-icon>
-              <box-icon
-                name="star"
-                type="solid"
-                color="#ffe700"
-                size="sm"></box-icon>
-              <box-icon
-                name="star"
-                type="solid"
-                color="#ffe700"
-                size="sm"></box-icon>
-              <box-icon
-                name="star"
-                type="solid"
-                color="#ffe700"
-                size="sm"></box-icon>
-              <MovieScoreRated>{Math.round(score)}/10</MovieScoreRated>
-              <Button className="report" variant="outlined" color="error">
-                Báo cáo bình luận này
-              </Button>
-            </MovieStart>
+            <Box display="flex" alignItems="center">
+              <Rating
+                value={score}
+                precision={0.5}
+                name="disabled"
+                disabled
+                emptyIcon={
+                  <Star style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              {score !== null && (
+                <Box sx={{ ml: 2, mt: '3px' }}>{labels[score]}</Box>
+              )}
+            </Box>
             <MovieReview>{review}</MovieReview>
             {/* <div className="date">
                         Ngày 21 tháng 12 năm 2021, lúc 23:23

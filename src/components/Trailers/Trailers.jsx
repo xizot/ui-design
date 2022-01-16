@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import CustomModal from '../CustomModal/CustomModal';
 import NextArrow from '../NextArrow/NextArrow';
@@ -13,15 +13,19 @@ const vimeoTemplate = 'https://player.vimeo.com/video/';
 function Trailers({ trailers, loading = false }) {
   const [openModal, setOpenModal] = useState(false);
   const [url, setUrl] = useState('');
+  const [isYoutube, setIsYoutube] = useState(false);
 
   const openModalHandler = (trailer) => {
     if (trailer) {
-      if (trailer.site.toLowerCase() === 'youtube')
+      if (trailer.site.toLowerCase() === 'youtube') {
         setUrl(youtubeTemplate + trailer.key);
-      else setUrl(vimeoTemplate + trailer.key);
+      } else {
+        setUrl(vimeoTemplate + trailer.key);
+      }
       setOpenModal(true);
     }
   };
+
   const closeModalHandler = () => {
     setOpenModal(false);
   };
@@ -51,7 +55,11 @@ function Trailers({ trailers, loading = false }) {
       },
     ],
   };
-
+  useEffect(() => {
+    if (trailers?.length > 0 && trailers[0].site.toLowerCase() === 'youtube') {
+      setIsYoutube(true);
+    }
+  }, [trailers]);
   return (
     <>
       <CustomModal open={openModal} onClose={closeModalHandler}>
@@ -92,6 +100,10 @@ function Trailers({ trailers, loading = false }) {
                   key={i}
                   index={i + 1}
                   loading={loading ? 1 : 0}
+                  imgSrc={
+                    isYoutube &&
+                    `https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`
+                  }
                   onOpenModal={() => openModalHandler(trailer)}
                 />
               ))}

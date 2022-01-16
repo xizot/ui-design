@@ -19,7 +19,11 @@ function TrailerItem({ imgSrc, onOpenModal, index, loading }) {
             <TrailerItemIndex variant="h5">{index}</TrailerItemIndex>
             <TrailerItemImage>
               <img
-                src={require('../../assets/images/trailer-default.jpg')}
+                src={
+                  imgSrc
+                    ? imgSrc
+                    : require('../../assets/images/trailer-default.jpg')
+                }
                 alt=""
               />
             </TrailerItemImage>

@@ -49,7 +49,7 @@ function MovieDetails() {
     if (id) {
       getMovieDetailHandler(id);
     }
-    setReview(getFakeReview);
+    setReview(getFakeReview());
   }, [id]);
 
   useEffect(() => {
@@ -64,7 +64,6 @@ function MovieDetails() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(details);
   if (error) return <Navigate to="/" />;
   return (
     <div>
