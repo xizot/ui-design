@@ -56,6 +56,7 @@ function Login() {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -192,7 +193,12 @@ function Login() {
               color="primary"
               size="large"
               fullWidth
-              disabled={!!errors.email || !!errors.password}>
+              disabled={
+                !!errors.email ||
+                !!errors.password ||
+                getValues('email')?.length === 0 ||
+                getValues('password')?.length === 0
+              }>
               Đăng Nhập
             </Button>
           </FormWrapper>

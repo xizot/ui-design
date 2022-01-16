@@ -49,6 +49,7 @@ function Register() {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -152,7 +153,12 @@ function Register() {
               size="large"
               fullWidth
               disabled={
-                !!errors.email || !!errors.password || !!errors.fullname
+                !!errors.email ||
+                !!errors.password ||
+                !!errors.fullname ||
+                getValues('email')?.length === 0 ||
+                getValues('password')?.length === 0 ||
+                getValues('fullname')?.length === 0
               }>
               Đăng Kí
             </Button>
