@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Container, styled, Grid, Pagination, Box } from '@mui/material';
+import { Container, styled, Grid, Pagination, Box, Skeleton } from '@mui/material';
 import {
   defaultSectionMargin,
   defaultSectionMarginMobile,
@@ -18,7 +18,7 @@ export const RatedSearchWrapper = styled(Container)({
 });
 
 function Rated() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [combineData, setCombineData] = useState([]);
   const rated = useSelector((state) => state.rated.data);
 
@@ -28,44 +28,57 @@ function Rated() {
         const find = data.find((f) => +f.id === +currentValue.id);
         return [...previousValue, { ...find, ...currentValue }];
       }, []);
-
+      setLoading(false)
       setCombineData(combine);
     }
   }, []);
 
-  console.log(combineData);
   useEffect(() => {
     fetchDataMovie(rated, data);
   }, [fetchDataMovie, rated]);
 
   return (
     <div style={{ minHeight: '80vh' }}>
-      <RatedSearchWrapper>
-        <Grid container spacing={3}>
-          {combineData.map((item, i) => (
-            <Grid item xs={12} sm={6} key={i}>
-              <MovieItemRated
-                imgSrc={item.backdrop_path}
-                id={item.id}
-                title={item.title}
-                score={item.score}
-                comment={item.comment}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </RatedSearchWrapper>
-      <Box
-        sx={{
-          margin: {
-            xs: defaultSectionMarginMobile,
-            md: defaultSectionMargin,
-          },
-        }}>
-        <PaginationWapper>
-          <Pagination count={1} shape="rounded" color="primary" />
-        </PaginationWapper>
-      </Box>
+      {loading? (
+          <Skeleton
+            variant="text"
+            height={50}
+            sx={{
+              minWidth: 250,
+              width: '40%',
+              margin: '0 auto',
+              marginBottom: theme.spacing(2),
+            }}
+          />
+          ): <>
+            <RatedSearchWrapper>
+              <Grid container spacing={3}>
+                {combineData.map((item, i) => (
+                  <Grid item xs={12} sm={6} key={i}>
+                    <MovieItemRated
+                      imgSrc={item.backdrop_path}
+                      id={item.id}
+                      title={item.title}
+                      score={item.score}
+                      comment={item.comment}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </RatedSearchWrapper>
+            <Box
+              sx={{
+                margin: {
+                  xs: defaultSectionMarginMobile,
+                  md: defaultSectionMargin,
+                },
+              }}>
+              <PaginationWapper>
+                <Pagination count={1} shape="rounded" color="primary" />
+              </PaginationWapper>
+            </Box>
+          </>
+      }
     </div>
   );
 }

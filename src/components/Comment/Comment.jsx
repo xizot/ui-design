@@ -82,7 +82,7 @@ function Comment({
   return (
     <CommentContainer>
       <Grid container spacing={2}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2}>
           <Info>
             <div className="image-container">
               <Avatar
@@ -107,7 +107,7 @@ function Comment({
             </div>
           </Info>
         </Grid>
-        <Grid item xs={6} md={9} sx={{ position: 'relative' }}>
+        <Grid item xs={6} md={10} sx={{ position: 'relative' }}>
           <Review>
             <Box
               display="flex"
