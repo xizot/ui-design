@@ -17,6 +17,7 @@ import {
 import MainvisualSkeleton from './MainvisualSkeleton';
 
 function Mainvisual({ loading, list }) {
+  console.log(list);
   const settings = {
     dots: true,
     fade: true,
@@ -83,7 +84,7 @@ function Mainvisual({ loading, list }) {
                       variant="body1"
                       className="sliderDescription"
                       color="primary">
-                      {movie.overview}
+                      {movie.genres?.map((item) => item.name)?.join(', ')}
                     </Typography>
                     <Link to={`/details/${movie.id}`}>
                       <ButtonViewDetails
