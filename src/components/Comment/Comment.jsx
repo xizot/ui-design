@@ -1,3 +1,4 @@
+import { Flag } from '@mui/icons-material';
 import Star from '@mui/icons-material/Star';
 import {
   Box,
@@ -16,7 +17,7 @@ import { MovieReview } from '../MovieItem/MovieItem.elements';
 export const CommentContainer = styled('div')({
   padding: theme.spacing(2),
   border: '1px solid #FFF',
-  boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
+  boxShadow: theme.shadows[4],
   borderRadius: '4px',
   marginBottom: '21px',
   minHeight: '165px',
@@ -108,7 +109,11 @@ function Comment({
         </Grid>
         <Grid item xs={6} md={9} sx={{ position: 'relative' }}>
           <Review>
-            <Box display="flex" alignItems="center">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              marginBottom={2}>
               <Box display="flex" alignItems="center">
                 <Rating
                   value={score}
@@ -123,7 +128,14 @@ function Comment({
                   <Box sx={{ ml: 2, mt: '3px' }}>{labels[score]}</Box>
                 )}
               </Box>
-              <Button color="secondary">Báo cáo bình luận này</Button>
+              <Button
+                color="secondary"
+                variant="outlined"
+                size="small"
+                sx={{ fontSize: 11 }}
+                startIcon={<Flag fontSize="small" />}>
+                Báo cáo
+              </Button>
             </Box>
             <MovieReview sx={{ marginBottom: 3 }}>{review}</MovieReview>
             <Typography

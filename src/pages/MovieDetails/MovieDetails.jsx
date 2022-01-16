@@ -133,7 +133,7 @@ function MovieDetails() {
         </Grid>
       </Section>
       <Section title="Đánh giá từ kamflex" loading={loading ? 1 : 0}>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2}>
           <Grid item xs={12} md={5}>
             {loading ? (
               <>

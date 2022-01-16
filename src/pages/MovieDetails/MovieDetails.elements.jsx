@@ -14,4 +14,5 @@ export const ImageOverlay = styled('img')({
   opacity: 0.3,
   filter: 'blur(3px)',
   zIndex: -1,
+  objectFit: 'cover',
 });

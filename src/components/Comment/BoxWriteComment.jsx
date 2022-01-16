@@ -77,7 +77,7 @@ function BoxWriteComment({ id }) {
           className="button-child"
           variant="contained"
           color="error"
-          style={{ marginRight: '5px' }}
+          style={{ minWidth: 100, marginRight: '5px' }}
           disabled={!comment.length}
           onClick={resetCommentHandler}>
           Hủy bỏ
@@ -86,6 +86,7 @@ function BoxWriteComment({ id }) {
           className="button-child"
           variant="contained"
           color="primary"
+          style={{ minWidth: 100 }}
           onClick={submitRatedHandler}>
           Gửi
         </Button>

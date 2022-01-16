@@ -92,17 +92,18 @@ function BoxEditComment({ id }) {
           </Typography>
           <ModalConfirmActions>
             <Button
-              color="primary"
               variant="contained"
+              sx={{ minWidth: 100, marginRight: defaultPadding }}
+              color="error"
+              onClick={deleteRatedHandler}>
+              Xóa
+            </Button>
+            <Button
+              color="primary"
+              variant="outlined"
               sx={{ minWidth: 100 }}
               onClick={closeModalDeleteHandler}>
               Hủy
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{ minWidth: 100, marginLeft: defaultPadding }}
-              onClick={deleteRatedHandler}>
-              Xóa
             </Button>
           </ModalConfirmActions>
         </ModalConfirmWrapper>
@@ -170,7 +171,7 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="error"
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: '5px', minWidth: 100 }}
               onClick={openModalDeleteHandler}>
               Xóa
             </Button>
@@ -178,6 +179,7 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="primary"
+              style={{ minWidth: 100 }}
               onClick={toggleEdit}>
               Chỉnh sửa
             </Button>
@@ -188,7 +190,7 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="error"
-              style={{ marginRight: '5px' }}
+              style={{ minWidth: 100, marginRight: '5px' }}
               onClick={resetCommentHandler}>
               Hủy bỏ
             </Button>
@@ -196,6 +198,7 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="primary"
+              style={{ minWidth: 100 }}
               onClick={editRatedHandler}>
               Gửi
             </Button>
