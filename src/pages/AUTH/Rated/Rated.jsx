@@ -41,7 +41,7 @@ function Rated() {
   return (
     <div style={{ minHeight: '80vh' }}>
       <RatedSearchWrapper>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid container spacing={3}>
           {combineData.map((item, i) => (
             <Grid item xs={12} sm={6} key={i}>
               <MovieItemRated

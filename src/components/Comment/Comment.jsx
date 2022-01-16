@@ -1,5 +1,13 @@
 import Star from '@mui/icons-material/Star';
-import { Box, Avatar, Grid, styled, Rating } from '@mui/material';
+import {
+  Box,
+  Avatar,
+  Grid,
+  styled,
+  Rating,
+  Typography,
+  Button,
+} from '@mui/material';
 import React from 'react';
 import { theme } from '../../GlobalMUI';
 import { labels } from '../../ultis/reusable';
@@ -11,7 +19,7 @@ export const CommentContainer = styled('div')({
   boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
   borderRadius: '4px',
   marginBottom: '21px',
-  height: '165px',
+  minHeight: '165px',
 });
 
 export const Info = styled('div')({
@@ -61,7 +69,15 @@ export const Review = styled('div')({
   },
 });
 
-function Comment({ score, name, img, review, numberLike, numberDislike }) {
+function Comment({
+  score,
+  name,
+  img,
+  review,
+  numberLike,
+  numberDislike,
+  dateCreated,
+}) {
   return (
     <CommentContainer>
       <Grid container spacing={2}>
@@ -90,26 +106,31 @@ function Comment({ score, name, img, review, numberLike, numberDislike }) {
             </div>
           </Info>
         </Grid>
-        <Grid item xs={6} md={9}>
+        <Grid item xs={6} md={9} sx={{ position: 'relative' }}>
           <Review>
             <Box display="flex" alignItems="center">
-              <Rating
-                value={score}
-                precision={0.5}
-                name="disabled"
-                disabled
-                emptyIcon={
-                  <Star style={{ opacity: 0.55 }} fontSize="inherit" />
-                }
-              />
-              {score !== null && (
-                <Box sx={{ ml: 2, mt: '3px' }}>{labels[score]}</Box>
-              )}
+              <Box display="flex" alignItems="center">
+                <Rating
+                  value={score}
+                  precision={0.5}
+                  name="disabled"
+                  disabled
+                  emptyIcon={
+                    <Star style={{ opacity: 0.55 }} fontSize="inherit" />
+                  }
+                />
+                {score !== null && (
+                  <Box sx={{ ml: 2, mt: '3px' }}>{labels[score]}</Box>
+                )}
+              </Box>
+              <Button color="secondary">Báo cáo bình luận này</Button>
             </Box>
-            <MovieReview>{review}</MovieReview>
-            {/* <div className="date">
-                        Ngày 21 tháng 12 năm 2021, lúc 23:23
-                    </div> */}
+            <MovieReview sx={{ marginBottom: 3 }}>{review}</MovieReview>
+            <Typography
+              variant="body2"
+              sx={{ position: 'absolute', bottom: 1, right: 1 }}>
+              Ngày 21 tháng 12 năm 2021, lúc 23:23
+            </Typography>
           </Review>
         </Grid>
       </Grid>

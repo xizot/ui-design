@@ -1,4 +1,4 @@
-import { Button, Rating } from '@mui/material';
+import { Button, Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import {
@@ -60,12 +60,13 @@ function MovieItemRated({
           </MovieImageWrapperRated>
           <MovieInfomation>
             <MovieContentText>
-              <MovieTitleRated
-                to={`/details/${id}`}
-                className="movie-title"
-                style={{ marginLeft: '2px' }}>
+              <MovieTitleRated to={`/details/${id}`} className="movie-title">
                 {title}
               </MovieTitleRated>
+
+              <Typography variant="body2" sx={{ marginBottom: 1 }}>
+                10 Phút trước
+              </Typography>
               <Box display="flex" alignItems="center">
                 <Rating
                   value={score}
@@ -80,6 +81,7 @@ function MovieItemRated({
                   <Box sx={{ ml: 2, mt: '3px' }}>{labels[score]}</Box>
                 )}
               </Box>
+
               <MovieReview>{comment}</MovieReview>
             </MovieContentText>
           </MovieInfomation>
