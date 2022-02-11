@@ -8,15 +8,42 @@ import {
 } from '../../GlobalMUI';
 import { PaginationWapper } from '../MovieDetails/MovieDetails.elements';
 import { useLocation } from 'react-router';
+import CustomSelect from '../../components/CustomSelect/CustomSelect';
+
+const filterOptions = [
+  {
+    label: 'Thời gian',
+    value: 'time',
+  },
+  {
+    label: 'Điểm đánh giá',
+    value: 'score',
+  },
+];
+
+const filterOrder = [
+  {
+    label: 'Tăng dần',
+    value: 'asc',
+  },
+  {
+    label: 'Giảm dần',
+    value: 'desc',
+  },
+];
+
 function Search() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [orderBy, setOrderBy] = useState('time');
+  const [type, setType] = useState('desc');
   const location = useLocation();
   const query = decodeURIComponent(location.search.slice(3));
-  const searchHandler = useCallback(async (keyword) => {
+
+  const searchHandler = useCallback(async (keyword, orderBy, type) => {
     try {
       setLoading(true);
-      const find = await search(keyword);
+      const find = await search(keyword, orderBy, type);
       setResults(find);
     } catch (error) {
       alert('Đã có lỗi xảy ra');
@@ -24,9 +51,15 @@ function Search() {
     setLoading(false);
   }, []);
 
+  const orderByChangeHandler = (e) => {
+    setOrderBy(e.target.value);
+  };
+  const typeChangeHandler = (e) => {
+    setType(e.target.value);
+  };
   useEffect(() => {
-    searchHandler(query);
-  }, [query, searchHandler]);
+    searchHandler(query, orderBy, type);
+  }, [query, orderBy, type, searchHandler]);
 
   return (
     <div style={{ minHeight: '80vh' }}>
@@ -39,9 +72,34 @@ function Search() {
               md: defaultSectionMargin,
             },
             textAlign: 'center',
+            fontSize: { xs: 18, md: 22 },
           }}>
           Kết quả liên quan tới: <b>{query}</b>
         </Typography>
+        {results.length > 0 && (
+          <React.Fragment>
+            <Grid container spacing={3} mb={5}>
+              <Grid item xs={6} sm={6} md={3} lg={2}>
+                <CustomSelect
+                  fullWidth
+                  label="Tiêu chí"
+                  options={filterOptions}
+                  defaultValue={orderBy}
+                  onChange={(e) => orderByChangeHandler(e)}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={3} lg={2}>
+                <CustomSelect
+                  fullWidth
+                  label="Sắp theo"
+                  options={filterOrder}
+                  onChange={(e) => typeChangeHandler(e)}
+                  defaultValue={type}
+                />
+              </Grid>
+            </Grid>
+          </React.Fragment>
+        )}
         <Grid
           container
           spacing={3}
