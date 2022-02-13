@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ModScoreItem from '../../components/ModScoreItem/ModScoreItem';
-import { Grid, Pagination, Skeleton } from '@mui/material';
+import { Box, Grid, Pagination, Skeleton } from '@mui/material';
 import Section from '../../components/Section/Section';
 import MovieInfoItem from '../../components/MovieInfoItem/MovieInfoItem';
 import TotalScore from '../../components/TotalScore/TotalScore';
@@ -45,10 +45,18 @@ function MovieDetails() {
     setLoading(false);
   };
 
+  const scroll = (id) => {
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   useEffect(() => {
     if (id) {
       getMovieDetailHandler(id);
     }
+
     setReview(getFakeReview());
   }, [id]);
 
@@ -59,6 +67,12 @@ function MovieDetails() {
       setHasComment(false);
     }
   }, [rated, id]);
+
+  useLayoutEffect(() => {
+    if (!loading && window.location.hash) {
+      scroll(window.location.hash);
+    }
+  }, [loading]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -208,17 +222,20 @@ function MovieDetails() {
       </Section>
 
       {loading ? (
-        <>
+        <React.Fragment>
           <Actors loading={loading ? 1 : 0} />
           <Trailers loading={loading ? 1 : 0} />
-        </>
+        </React.Fragment>
       ) : (
         <>
           {actors?.length > 0 && <Actors actors={actors} />}
           {trailers?.length > 0 && <Trailers trailers={trailers} />}
         </>
       )}
-      <Section title="Đánh giá từ người xem" loading={loading ? 1 : 0}>
+      <Section
+        title="Đánh giá từ người xem"
+        loading={loading ? 1 : 0}
+        id="comment">
         {isAuthenticated ? (
           hasComment ? (
             <BoxEditComment id={id} />
@@ -229,7 +246,7 @@ function MovieDetails() {
           <BoxLogin id={id} />
         )}
 
-        <div>
+        <Box>
           {review.map((item, i) => (
             <Comment
               key={i}
@@ -241,7 +258,7 @@ function MovieDetails() {
               numberLike={item.numberLike}
             />
           ))}
-        </div>
+        </Box>
         <PaginationWapper>
           <Pagination count={10} shape="rounded" color="primary" />
         </PaginationWapper>

@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
-import React from "react";
+import { Button } from '@mui/material';
+import React from 'react';
 import {
   MovieContent,
   MovieImage,
@@ -11,8 +11,8 @@ import {
   MovieScoreWrapper,
   MovieScore,
   MovieHover,
-} from "./MovieItem.elements";
-import MovieItemSkeleton from "./MovieItemSkeleton";
+} from './MovieItem.elements';
+import MovieItemSkeleton from './MovieItemSkeleton';
 
 function MovieItem({
   id,
@@ -22,34 +22,33 @@ function MovieItem({
   releasedAt,
   loading = false,
   itemslider = true,
-  size = "normal",
+  size = 'normal',
 }) {
   return (
     <MovieWrapper itemslider={itemslider ? 1 : 0}>
       {loading ? (
         <MovieItemSkeleton
           itemslider={itemslider ? 1 : 0}
-          size={size === "normal" ? 1 : 0}
+          size={size === 'normal' ? 1 : 0}
         />
       ) : (
         <>
           <MovieImageWrapper>
             <MovieImage src={imgSrc} />
-            <MovieHover to={`/details/${id}`} className='on-hover'>
+            <MovieHover to={`/details/${id}`} className="on-hover">
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 endIcon={
-                  <box-icon color='#fff' name='right-arrow-alt'></box-icon>
-                }
-              >
+                  <box-icon color="#fff" name="right-arrow-alt"></box-icon>
+                }>
                 Xem chi tiết
               </Button>
             </MovieHover>
           </MovieImageWrapper>
-          <MovieContent to={`/details/${id}`} size={size === "normal" ? 1 : 0}>
+          <MovieContent to={`/details/${id}`} size={size === 'normal' ? 1 : 0}>
             <MovieContentText>
-              <MovieTitle className='movie-title'>{title}</MovieTitle>
+              <MovieTitle className="movie-title">{title}</MovieTitle>
               <MovieTimer>{releasedAt}</MovieTimer>
             </MovieContentText>
             <MovieScoreWrapper>

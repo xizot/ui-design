@@ -1,4 +1,11 @@
-import { Button, TextField, Rating, Box, Typography } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Rating,
+  Box,
+  Typography,
+  IconButton,
+} from '@mui/material';
 
 import StarIcon from '@mui/icons-material/Star';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -14,6 +21,7 @@ import CustomModal from '../CustomModal/CustomModal';
 import { defaultPadding } from '../../GlobalMUI';
 import { toast } from 'react-toastify';
 import { labels } from '../../ultis/reusable';
+import { Delete, Edit } from '@mui/icons-material';
 
 function BoxEditComment({ id }) {
   const [value, setValue] = useState(2);
@@ -101,7 +109,7 @@ function BoxEditComment({ id }) {
             <Button
               color="primary"
               variant="outlined"
-              sx={{ minWidth: 100 }}
+              sx={{ minWidth: { xs: 50, md: 100 } }}
               onClick={closeModalDeleteHandler}>
               Hủy
             </Button>
@@ -166,12 +174,12 @@ function BoxEditComment({ id }) {
       />
       <CommentActions>
         {!isEdit ? (
-          <>
+          <React.Fragment>
             <Button
               className="button-child"
               variant="contained"
               color="error"
-              style={{ marginRight: '5px', minWidth: 100 }}
+              style={{ marginRight: '5px', minWidth: { xs: 50, md: 100 } }}
               onClick={openModalDeleteHandler}>
               Xóa
             </Button>
@@ -179,11 +187,11 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="primary"
-              style={{ minWidth: 100 }}
+              style={{ minWidth: { xs: 50, md: 100 } }}
               onClick={toggleEdit}>
               Chỉnh sửa
             </Button>
-          </>
+          </React.Fragment>
         ) : (
           <>
             <Button
@@ -198,7 +206,7 @@ function BoxEditComment({ id }) {
               className="button-child"
               variant="contained"
               color="primary"
-              style={{ minWidth: 100 }}
+              style={{ minWidth: { xs: 50, md: 100 } }}
               onClick={editRatedHandler}>
               Gửi
             </Button>

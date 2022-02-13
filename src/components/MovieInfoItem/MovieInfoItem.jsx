@@ -33,7 +33,10 @@ function MovieInfoItem({
               flex: 1,
               color: color,
               fontWeight: size === 'large' ? 600 : 500,
-              fontSize: size === 'large' ? 28 : 16,
+              fontSize: {
+                xs: size === 'large' ? 22 : 16,
+                md: size === 'large' ? 28 : 16,
+              },
             }}>
             {content}
           </Typography>

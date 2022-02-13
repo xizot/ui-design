@@ -7,5 +7,6 @@ export const MovieInfoItemWrapper = styled('div')({
   marginBottom: theme.spacing(2),
   [theme.breakpoints.down('sm')]: {
     display: 'block',
+    marginBottom: theme.spacing(1),
   },
 });

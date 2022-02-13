@@ -1,14 +1,22 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Container, styled, Grid, Pagination, Box, Skeleton } from '@mui/material';
+import {
+  Container,
+  styled,
+  Grid,
+  Pagination,
+  Box,
+  Skeleton,
+} from '@mui/material';
+
 import {
   defaultSectionMargin,
   defaultSectionMarginMobile,
   theme,
 } from '../../../GlobalMUI';
-import MovieItemRated from '../../../components/MovieItem/MovieItemRated';
 import { PaginationWapper } from '../../MovieDetails/MovieDetails.elements';
 import { useSelector } from 'react-redux';
 import { data } from '../../../ultis';
+import MovieRatedItem from '../../../components/MovieRatedItem/MovieRatedItem';
 
 export const RatedSearchWrapper = styled(Container)({
   margin: `0 auto ${defaultSectionMargin}`,
@@ -28,7 +36,7 @@ function Rated() {
         const find = data.find((f) => +f.id === +currentValue.id);
         return [...previousValue, { ...find, ...currentValue }];
       }, []);
-      setLoading(false)
+      setLoading(false);
       setCombineData(combine);
     }
   }, []);
@@ -37,49 +45,58 @@ function Rated() {
     fetchDataMovie(rated, data);
   }, [fetchDataMovie, rated]);
 
+  //fake loading
+  useEffect(() => {
+    setLoading(true);
+    var timeout = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <div style={{ minHeight: '80vh' }}>
-      {loading? (
-          <Skeleton
-            variant="text"
-            height={50}
-            sx={{
-              minWidth: 250,
-              width: '40%',
-              margin: '0 auto',
-              marginBottom: theme.spacing(2),
-            }}
-          />
-          ): <>
-            <RatedSearchWrapper>
-              <Grid container spacing={3}>
-                {combineData.map((item, i) => (
-                  <Grid item xs={12} sm={6} key={i}>
-                    <MovieItemRated
-                      imgSrc={item.backdrop_path}
-                      id={item.id}
-                      title={item.title}
-                      score={item.score}
-                      comment={item.comment}
-                    />
-                  </Grid>
-                ))}
+    <Container style={{ minHeight: '80vh' }}>
+      <Grid container spacing={3}>
+        {loading
+          ? [0, 0, 0, 0, 0, 0, 0, 0].map((item, i) => (
+              <Grid item xs={12} sm={6} key={i}>
+                <MovieRatedItem
+                  loading={loading ? 1 : 0}
+                  imgSrc={item.backdrop_path}
+                  id={item.id}
+                  title={item.title}
+                  score={item.score}
+                  comment={item.comment}
+                />
               </Grid>
-            </RatedSearchWrapper>
-            <Box
-              sx={{
-                margin: {
-                  xs: defaultSectionMarginMobile,
-                  md: defaultSectionMargin,
-                },
-              }}>
-              <PaginationWapper>
-                <Pagination count={1} shape="rounded" color="primary" />
-              </PaginationWapper>
-            </Box>
-          </>
-      }
-    </div>
+            ))
+          : combineData.map((item, i) => (
+              <Grid item xs={12} sm={6} key={i}>
+                <MovieRatedItem
+                  loading={loading ? 1 : 0}
+                  imgSrc={item.backdrop_path}
+                  id={item.id}
+                  title={item.title}
+                  score={item.score}
+                  comment={item.comment}
+                />
+              </Grid>
+            ))}
+      </Grid>
+      {!loading && (
+        <Box
+          sx={{
+            margin: {
+              xs: defaultSectionMarginMobile,
+              md: defaultSectionMargin,
+            },
+          }}>
+          <PaginationWapper>
+            <Pagination count={1} shape="rounded" color="primary" />
+          </PaginationWapper>
+        </Box>
+      )}
+    </Container>
   );
 }
 

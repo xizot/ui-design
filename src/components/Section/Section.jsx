@@ -6,9 +6,9 @@ import {
   SectionWrapper,
 } from './Section.elements';
 
-function Section({ title, children, loading }) {
+function Section({ title, children, loading, ...props }) {
   return (
-    <SectionWrapper>
+    <SectionWrapper {...props}>
       {loading ? (
         <Skeleton variant="text" height={50} width={250} />
       ) : (

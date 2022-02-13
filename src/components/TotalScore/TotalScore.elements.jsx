@@ -4,6 +4,9 @@ import { theme } from '../../GlobalMUI';
 export const TotalScoreWrapper = styled('div')({
   maxWidth: 220,
   marginTop: theme.spacing(3),
+  [theme.breakpoints.down('sm')]: {
+    marginTop: theme.spacing(1),
+  },
 });
 export const TotalScoreBox = styled('div')({
   textAlign: 'center',

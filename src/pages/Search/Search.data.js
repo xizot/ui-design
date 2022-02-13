@@ -29,6 +29,6 @@ export const search = (keyword, orderby = 'score', type = 'desc') => {
             );
           })
       );
-    }, 1000);
+    }, 500);
   });
 };

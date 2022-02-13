@@ -8,7 +8,7 @@ export const getDetailsById = async (id) => {
       } else {
         reject([]);
       }
-    }, 1000);
+    }, 400);
   });
 };
 export const getFakeReview = () => {

@@ -8,7 +8,7 @@ export const listNewMovies = () => {
           .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
           .slice(0, 10)
       );
-    }, 1000);
+    }, 500);
   });
 };
 export const listBestMovies = () => {
@@ -20,7 +20,7 @@ export const listBestMovies = () => {
           .sort((a, b) => b.vote_average - a.vote_average)
           .slice(0, 10)
       );
-    }, 1000);
+    }, 500);
   });
 };
 export const listBadMovies = () => {
@@ -32,7 +32,7 @@ export const listBadMovies = () => {
           .sort((a, b) => a.vote_average - b.vote_average)
           .slice(0, 10)
       );
-    }, 1000);
+    }, 500);
   });
 };
 
@@ -40,7 +40,7 @@ export const listManyReviews = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(data.sort((a, b) => b.vote_count - a.vote_count).slice(0, 10));
-    }, 1000);
+    }, 500);
   });
 };
 export const listPopular = () => {
@@ -52,6 +52,6 @@ export const listPopular = () => {
           .filter((f) => f.vote_average > 8.5)
           .slice(0, 3)
       );
-    }, 1000);
+    }, 500);
   });
 };
