@@ -11,10 +11,22 @@ import {
   FooterWrapper,
 } from './Footer.elements';
 const pages = [
-  'Phim thịnh hành',
-  'Mới & phổ biến',
-  'Phim Đánh Giá Cao',
-  'Phim Đánh Giá Thấp',
+  {
+    title: 'Phim thịnh hành',
+    path: '/browse/popular',
+  },
+  {
+    title: 'Mới & phổ biến',
+    path: '/browse/lasted',
+  },
+  {
+    title: 'Phim đánh giá cao',
+    path: '/browse/high-rate',
+  },
+  {
+    title: 'Phim đánh giá thấp',
+    path: '/browse/low-rate',
+  },
 ];
 function Footer() {
   return (
@@ -31,8 +43,8 @@ function Footer() {
         </Link>
         <FooterNavigation>
           {pages.map((page, i) => (
-            <FooterNavigationItem key={i} to="/">
-              {page}
+            <FooterNavigationItem key={i} to={page.path}>
+              {page.title}
             </FooterNavigationItem>
           ))}
         </FooterNavigation>
@@ -43,25 +55,25 @@ function Footer() {
             sx={{ display: { xs: 'none', md: 'block' } }}></Grid>
           <Grid item xs={12} md={3}>
             <FooterSocials>
-              <Link to="facebook.com">
+              <a href="https://www.facebook.com/">
                 <BottomIcon
                   color="#fff"
                   size="md"
                   type="logo"
                   name="facebook"
                 />
-              </Link>
-              <Link to="github.com">
+              </a>
+              <a href="https://github.com/">
                 <BottomIcon color="#fff" size="md" type="logo" name="github" />
-              </Link>
-              <Link to="instagram.com">
+              </a>
+              <a href="https://www.instagram.com/">
                 <BottomIcon
                   color="#fff"
                   size="md"
                   type="logo"
                   name="instagram"
                 />
-              </Link>
+              </a>
             </FooterSocials>
           </Grid>
           <Grid item xs={12} md={3}>

@@ -5,6 +5,7 @@ import MovieDetails from '../pages/MovieDetails/MovieDetails';
 import Register from '../pages/Register/Register';
 import Search from '../pages/Search/Search';
 import Logout from '../pages/Logout/Logout';
+import Browse from '../pages/Browse/Browse';
 
 export const routes = [
   {
@@ -13,6 +14,13 @@ export const routes = [
     protected: false,
     title: 'Trang chủ',
     component: Home,
+  },
+  {
+    path: '/browse/:slag',
+    exact: false,
+    protected: false,
+    title: 'Danh sách phim',
+    component: Browse,
   },
   {
     path: '/details/:id',

@@ -29,11 +29,11 @@ import { useSelector } from 'react-redux';
 const pages = [
   {
     title: 'Phim thịnh hành',
-    path: '/',
+    path: '/browse/popular',
   },
   {
     title: 'Mới & phổ biến',
-    path: '/',
+    path: '/browse/lasted',
   },
   {
     title: 'Danh sách của tôi',

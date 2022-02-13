@@ -1,4 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
 import {
   Container,
   styled,
@@ -53,7 +58,9 @@ function Rated() {
     }, 500);
     return () => clearTimeout(timeout);
   }, []);
-
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Container style={{ minHeight: '80vh' }}>
       <Grid container spacing={3}>
