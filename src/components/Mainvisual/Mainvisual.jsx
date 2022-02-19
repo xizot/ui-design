@@ -17,7 +17,6 @@ import {
 import MainvisualSkeleton from './MainvisualSkeleton';
 
 function Mainvisual({ loading, list }) {
-  console.log(list);
   const settings = {
     dots: true,
     fade: true,

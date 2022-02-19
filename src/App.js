@@ -14,8 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (localStorage.getItem('isAuthenticated')) {
-      dispatch(authActions.loginSuccess());
+    const auth = localStorage.getItem('auth');
+    if (auth) {
+      dispatch(authActions.loginSuccess(JSON.parse(auth)));
     }
 
     var rated = localStorage.getItem('rated');

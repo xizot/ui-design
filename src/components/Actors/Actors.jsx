@@ -67,9 +67,12 @@ function Actors({ actors, loading = false }) {
             actors.map((actor, i) => (
               <ActorItem
                 key={i}
-                imgSrc={actor.profile_path}
+                imgSrc={
+                  actor.profile_path ||
+                  require('../../assets/images/default.png')
+                }
                 name={actor.name}
-                position={actor.character}
+                position={actor.character || actor.known_for_department}
               />
             ))}
       </Slider>

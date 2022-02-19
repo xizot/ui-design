@@ -45,6 +45,7 @@ function MovieDetails() {
     setLoading(false);
   };
 
+  console.log(actors);
   const scroll = (id) => {
     const section = document.querySelector(id);
     if (section) {

@@ -6,16 +6,22 @@ import {
 
 const initialState = {
   isAuthenticated: false,
+  isError: false,
+  user: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return { ...state, isAuthenticated: true };
+      localStorage.setItem(
+        'auth',
+        JSON.stringify({ isAuthenticated: true, user: action.payload })
+      );
+      return { ...state, isAuthenticated: true, isError: false };
     case LOGOUT_SUCESS:
-      return { ...state, isAuthenticated: false };
+      return { ...state, isAuthenticated: false, isError: false };
     case LOGIN_FAIL:
-      return { ...state, isAuthenticated: false };
+      return { ...state, isAuthenticated: false, isError: true };
     default:
       return state;
   }

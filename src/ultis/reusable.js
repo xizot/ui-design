@@ -10,3 +10,10 @@ export const labels = {
   4.5: '9/10',
   5: '10/10',
 };
+export const fakeLoading = (Fn) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Fn());
+    }, 500);
+  });
+};

@@ -1,3 +1,4 @@
+import { users } from '../../ultis/user';
 import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -5,9 +6,27 @@ import {
 } from '../constants/auth.constant';
 
 export const authActions = {
-  loginSuccess: () => (dispatch) => {
+  login: (email, password) => (dispatch) => {
+    var isExisting = users.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (isExisting) {
+      dispatch({
+        payload: isExisting,
+        type: LOGIN_SUCCESS,
+      });
+    } else {
+      dispatch({
+        payload: {},
+        type: LOGIN_FAIL,
+      });
+    }
+    return isExisting;
+  },
+
+  loginSuccess: (payload) => (dispatch) => {
     return dispatch({
-      payload: {},
+      payload: payload,
       type: LOGIN_SUCCESS,
     });
   },

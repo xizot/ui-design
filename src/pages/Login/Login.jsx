@@ -48,10 +48,10 @@ const schema = yup
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
   const { search } = useLocation();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const error = useSelector((state) => state.auth.isError);
 
   const {
     control,
@@ -69,14 +69,7 @@ function Login() {
     setShowPassword((prevState) => !prevState);
   };
   const onSubmit = (data) => {
-    setError(false);
-    if (data.email === 'user@gmail.com' && data.password === '123456') {
-      localStorage.setItem('isAuthenticated', true);
-      dispatch(authActions.loginSuccess());
-    } else {
-      dispatch(authActions.loginFail());
-      setError(true);
-    }
+    dispatch(authActions.login(data.email, +data.password));
   };
   if (isAuthenticated) {
     var backUrl = new URLSearchParams(search).get('backUrl') || '/';
