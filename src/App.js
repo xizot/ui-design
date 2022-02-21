@@ -10,10 +10,16 @@ import { authActions } from './redux/actions/auth.action';
 import { ratedActions } from './redux/actions/rated.action';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { commentActions } from './redux/actions/comment.action';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    const comments = localStorage.getItem('comments');
+    if (comments) {
+      dispatch(commentActions.load(JSON.parse(comments)));
+    }
+
     const auth = localStorage.getItem('auth');
     if (auth) {
       dispatch(authActions.loginSuccess(JSON.parse(auth)));

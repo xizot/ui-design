@@ -1,11 +1,4 @@
-import {
-  Button,
-  TextField,
-  Rating,
-  Box,
-  Typography,
-  IconButton,
-} from '@mui/material';
+import { Button, TextField, Rating, Box, Typography } from '@mui/material';
 
 import StarIcon from '@mui/icons-material/Star';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -102,7 +95,7 @@ function BoxEditComment({ id }) {
             <Button
               variant="contained"
               sx={{ minWidth: 100, marginRight: defaultPadding }}
-              color="error"
+              color="info"
               onClick={deleteRatedHandler}>
               Xóa
             </Button>
@@ -178,7 +171,7 @@ function BoxEditComment({ id }) {
             <Button
               className="button-child"
               variant="contained"
-              color="error"
+              color="info"
               style={{ marginRight: '5px', minWidth: { xs: 50, md: 100 } }}
               onClick={openModalDeleteHandler}>
               Xóa

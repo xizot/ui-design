@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router';
 
 function PrivateRoute({ children, backUrl }) {
-  const isAuthenticated = localStorage.getItem('isAuthenticated');
+  const isAuthenticated = localStorage.getItem('auth');
   return isAuthenticated ? (
     children
   ) : (

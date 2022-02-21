@@ -42,7 +42,6 @@ function Home() {
     }
   };
   const queryChangeHandler = (e, value) => {
-    console.log(value);
     setQuery(value);
   };
   const getListPopularHandler = useCallback(async () => {

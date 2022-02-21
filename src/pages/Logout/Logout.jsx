@@ -8,7 +8,7 @@ function Logout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('auth');
     dispatch(authActions.logoutSuccess());
     history('/login');
   }, [history, dispatch]);

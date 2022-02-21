@@ -8,7 +8,7 @@ import { Paragraphy } from '../../GlobalElements';
 import Actors from '../../components/Actors/Actors';
 import Trailers from '../../components/Trailers/Trailers';
 import { Navigate, useParams } from 'react-router';
-import { getDetailsById, getFakeReview } from './MovieDetails.data';
+import { getDetailsById } from './MovieDetails.data';
 import BoxLogin from '../../components/BoxLogin/BoxLogin';
 import { ImageOverlay, PaginationWapper } from './MovieDetails.elements';
 import Comment from '../../components/Comment/Comment';
@@ -22,8 +22,8 @@ function MovieDetails() {
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [error, setError] = useState(false);
-  const [review, setReview] = useState([]);
   const rated = useSelector((state) => state.rated.data);
+  const comments = useSelector((state) => state.comment.data);
   const [hasComment, setHasComment] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const getMovieDetailHandler = async (id) => {
@@ -45,26 +45,6 @@ function MovieDetails() {
     setLoading(false);
   };
 
-  const clickLike = (item, i) => {
-    const findItem = review.find(element => element.id > item.id)
-    if(findItem !== -1){
-      item = review[i];
-      item.numberLike = item.numberLike + 1;
-      review[i] = item;
-      setReview(review);
-    }
-  }
-
-  const clickDisLike = (item, i) => {
-    const findItem = review.find(element => element.id > item.id)
-    if(findItem !== -1){
-      item = review[i];
-      item.numberLike = item.numberDislike + 1;
-      review[i] = item;
-      setReview(review);
-    }
-  }
-
   const scroll = (id) => {
     const section = document.querySelector(id);
     if (section) {
@@ -76,7 +56,6 @@ function MovieDetails() {
     if (id) {
       getMovieDetailHandler(id);
     }
-    setReview(getFakeReview());
   }, [id]);
 
   useEffect(() => {
@@ -266,22 +245,23 @@ function MovieDetails() {
         )}
 
         <Box>
-          {review.map((item, i) => (
+          {comments.map((item, i) => (
             <Comment
               key={i}
+              id={item.id}
               score={item.score}
-              name={item.name}
-              img={item.img}
+              name={item.user.fullname}
               review={item.review}
-              numberDislike={item.numberDislike}
-              numberLike={item.numberLike}
-              onClickLike={() => clickLike(item, i)}
-              onClickDislike={() => clickDisLike(item, i)}
+              numberLike={item.total_like}
+              numberDislike={item.total_dislike}
+              affect={item.affect}
+              created_at={item.created_at}
+              movieId={id}
             />
           ))}
         </Box>
         <PaginationWapper>
-          <Pagination count={10} shape="rounded" color="primary" />
+          <Pagination count={4} shape="rounded" color="primary" />
         </PaginationWapper>
       </Section>
     </div>

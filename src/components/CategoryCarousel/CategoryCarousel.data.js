@@ -33,6 +33,6 @@ export const getListCategory = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(genres);
-    }, 1000);
+    }, 700);
   });
 };

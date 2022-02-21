@@ -13,6 +13,9 @@ import React from 'react';
 import { theme } from '../../GlobalMUI';
 import { labels } from '../../ultis/reusable';
 import { MovieReview } from '../MovieItem/MovieItem.elements';
+import { commentActions } from '../../redux/actions/comment.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const CommentContainer = styled('div')({
   padding: theme.spacing(2),
@@ -64,11 +67,10 @@ export const Info = styled('div')({
     background: 'unset !important',
     boxShadow: 'unset !important',
     cursor: 'pointer',
-    '&:[disabled]' : {
+    '&:[disabled]': {
       color: '#C0C0C0 !important',
-    }
-
-  }
+    },
+  },
 });
 
 export const Review = styled('div')({
@@ -88,43 +90,61 @@ export const Review = styled('div')({
     right: 0,
   },
   '.total-t': {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.down('lg')]: {
-      display: "unset",
+      display: 'unset',
     },
   },
   '.date-review': {
-    position: 'absolute', 
-    bottom: 1, 
+    position: 'absolute',
+    bottom: 1,
     right: 1,
     [theme.breakpoints.down('lg')]: {
       position: 'unset',
-      marginTop: "5px",
+      marginTop: '5px',
     },
   },
   '.box-review': {
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"space-between",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: theme.spacing(2),
     [theme.breakpoints.down('lg')]: {
-      display:"unset",
+      display: 'unset',
     },
-  }
+  },
 });
 
 function Comment({
+  movieId,
+  id,
   score,
   name,
   img,
   review,
   numberLike,
   numberDislike,
-  dateCreated,
-  onClickLike,
-  onClickDislike,
+  created_at,
+  affect = -1,
 }) {
+  const history = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
+  const like_clicked = () => {
+    if (!isAuthenticated) {
+      history(`/login?backUrl=/details/${movieId}#comment`);
+    }
+    dispatch(commentActions.like(+id));
+  };
+
+  const dislike_clicked = () => {
+    if (!isAuthenticated) {
+      history(`/login?backUrl=/details/${movieId}#comment`);
+    }
+    dispatch(commentActions.dislike(+id));
+  };
   return (
     <CommentContainer>
       <Grid container spacing={2}>
@@ -139,24 +159,25 @@ function Comment({
             </div>
             <div className="name">{name}</div>
             <div className="like">
-              <Button
-                className="hidden-button"
-                onClick={onClickLike}
-               >
+              <Button className="hidden-button" onClick={like_clicked}>
                 <box-icon
                   name="like"
-                  type="solid"
+                  type={
+                    (isAuthenticated && affect === 1 && 'solid') || 'regular'
+                  }
                   color="#112D4E"
                   size="sm"
                   style={{ marginRight: '15px' }}></box-icon>
               </Button>
-              
-              <Button
-              className="hidden-button"
-                onClick={onClickDislike}
-               >
-                 <box-icon name="dislike" size="sm" ></box-icon>
-               </Button>
+
+              <Button className="hidden-button" onClick={dislike_clicked}>
+                <box-icon
+                  name="dislike"
+                  size="sm"
+                  type={
+                    (isAuthenticated && affect === 0 && 'solid') || 'regular'
+                  }></box-icon>
+              </Button>
             </div>
             <div className="number-like">
               <div className="number-icon-like">{numberLike}</div>
@@ -166,9 +187,7 @@ function Comment({
         </Grid>
         <Grid item xs={6} md={10} sx={{ position: 'relative' }}>
           <Review>
-            <Box
-              className="box-review"
-              >
+            <Box className="box-review">
               <Box className="total-t">
                 <Rating
                   value={score}
@@ -193,10 +212,8 @@ function Comment({
               </Button>
             </Box>
             <MovieReview sx={{ marginBottom: 3 }}>{review}</MovieReview>
-            <Typography
-              variant="body2"
-              className="date-review">
-              Ngày 21 tháng 12 năm 2021, lúc 23:23
+            <Typography variant="body2" className="date-review">
+              {created_at}
             </Typography>
           </Review>
         </Grid>
