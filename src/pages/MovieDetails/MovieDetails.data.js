@@ -14,6 +14,7 @@ export const getDetailsById = async (id) => {
 export const getFakeReview = () => {
   const data = [
     {
+      id:1,
       score: 4,
       name: 'Nguyễn Văn Thắng',
       img: null,
@@ -23,6 +24,7 @@ export const getFakeReview = () => {
       numberDislike: 10,
     },
     {
+      id:2,
       score: 3,
       name: 'Nguyễn Thế Hoàng',
       img: null,
@@ -31,6 +33,7 @@ export const getFakeReview = () => {
       numberDislike: 4,
     },
     {
+      id:3,
       score: 2.5,
       name: 'David Nhật',
       img: null,
@@ -40,6 +43,7 @@ export const getFakeReview = () => {
       numberDislike: 24,
     },
     {
+      id:4,
       score: 5,
       name: 'Nguyễn Gia Huy',
       img: null,

@@ -37,7 +37,9 @@ export const Info = styled('div')({
     justifyContent: 'center',
   },
   '.like': {
+    display: 'flex',
     textAlign: 'center',
+    justifyContent: 'center',
     '.icon-like': {
       marginRight: '15px',
     },
@@ -50,6 +52,23 @@ export const Info = styled('div')({
       marginRight: '15px',
     },
   },
+  '.hidden-button': {
+    height: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 0,
+    padding: 0,
+    margin: 0,
+    minWidth: 'unset',
+    background: 'unset !important',
+    boxShadow: 'unset !important',
+    cursor: 'pointer',
+    '&:[disabled]' : {
+      color: '#C0C0C0 !important',
+    }
+
+  }
 });
 
 export const Review = styled('div')({
@@ -68,6 +87,31 @@ export const Review = styled('div')({
     position: 'absolute',
     right: 0,
   },
+  '.total-t': {
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.down('lg')]: {
+      display: "unset",
+    },
+  },
+  '.date-review': {
+    position: 'absolute', 
+    bottom: 1, 
+    right: 1,
+    [theme.breakpoints.down('lg')]: {
+      position: 'unset',
+      marginTop: "5px",
+    },
+  },
+  '.box-review': {
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"space-between",
+    marginBottom: theme.spacing(2),
+    [theme.breakpoints.down('lg')]: {
+      display:"unset",
+    },
+  }
 });
 
 function Comment({
@@ -78,6 +122,8 @@ function Comment({
   numberLike,
   numberDislike,
   dateCreated,
+  onClickLike,
+  onClickDislike,
 }) {
   return (
     <CommentContainer>
@@ -93,13 +139,24 @@ function Comment({
             </div>
             <div className="name">{name}</div>
             <div className="like">
-              <box-icon
-                name="like"
-                type="solid"
-                color="#112D4E"
-                size="sm"
-                style={{ marginRight: '15px' }}></box-icon>
-              <box-icon name="dislike" size="sm"></box-icon>
+              <Button
+                className="hidden-button"
+                onClick={onClickLike}
+               >
+                <box-icon
+                  name="like"
+                  type="solid"
+                  color="#112D4E"
+                  size="sm"
+                  style={{ marginRight: '15px' }}></box-icon>
+              </Button>
+              
+              <Button
+              className="hidden-button"
+                onClick={onClickDislike}
+               >
+                 <box-icon name="dislike" size="sm" ></box-icon>
+               </Button>
             </div>
             <div className="number-like">
               <div className="number-icon-like">{numberLike}</div>
@@ -110,11 +167,9 @@ function Comment({
         <Grid item xs={6} md={10} sx={{ position: 'relative' }}>
           <Review>
             <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              marginBottom={2}>
-              <Box display="flex" alignItems="center">
+              className="box-review"
+              >
+              <Box className="total-t">
                 <Rating
                   value={score}
                   precision={0.5}
@@ -140,7 +195,7 @@ function Comment({
             <MovieReview sx={{ marginBottom: 3 }}>{review}</MovieReview>
             <Typography
               variant="body2"
-              sx={{ position: 'absolute', bottom: 1, right: 1 }}>
+              className="date-review">
               Ngày 21 tháng 12 năm 2021, lúc 23:23
             </Typography>
           </Review>

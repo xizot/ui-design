@@ -175,6 +175,9 @@ export const MovieScoreRated = styled('div')({
 
 export const MovieReview = styled('div')({
   margin: '3px 0 0 2px',
+  [theme.breakpoints.down('lg')]: {
+    margin: '3px 0 0 3px',
+  },
 });
 
 export const MovieTitleRated = styled(Link)({

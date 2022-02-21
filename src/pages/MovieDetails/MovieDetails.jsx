@@ -45,7 +45,26 @@ function MovieDetails() {
     setLoading(false);
   };
 
-  console.log(actors);
+  const clickLike = (item, i) => {
+    const findItem = review.find(element => element.id > item.id)
+    if(findItem !== -1){
+      item = review[i];
+      item.numberLike = item.numberLike + 1;
+      review[i] = item;
+      setReview(review);
+    }
+  }
+
+  const clickDisLike = (item, i) => {
+    const findItem = review.find(element => element.id > item.id)
+    if(findItem !== -1){
+      item = review[i];
+      item.numberLike = item.numberDislike + 1;
+      review[i] = item;
+      setReview(review);
+    }
+  }
+
   const scroll = (id) => {
     const section = document.querySelector(id);
     if (section) {
@@ -57,7 +76,6 @@ function MovieDetails() {
     if (id) {
       getMovieDetailHandler(id);
     }
-
     setReview(getFakeReview());
   }, [id]);
 
@@ -257,6 +275,8 @@ function MovieDetails() {
               review={item.review}
               numberDislike={item.numberDislike}
               numberLike={item.numberLike}
+              onClickLike={() => clickLike(item, i)}
+              onClickDislike={() => clickDisLike(item, i)}
             />
           ))}
         </Box>
