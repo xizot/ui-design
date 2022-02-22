@@ -13,6 +13,7 @@ import BoxLogin from '../../components/BoxLogin/BoxLogin';
 import { ImageOverlay, PaginationWapper } from './MovieDetails.elements';
 import Comment from '../../components/Comment/Comment';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 import BoxEditComment from '../../components/Comment/BoxEditComment';
 import BoxWriteComment from '../../components/Comment/BoxWriteComment';
 function MovieDetails() {
@@ -26,6 +27,7 @@ function MovieDetails() {
   const comments = useSelector((state) => state.comment.data);
   const [hasComment, setHasComment] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const now = new Date()
   const getMovieDetailHandler = async (id) => {
     try {
       setError(false);

@@ -12,7 +12,7 @@ const initialState = {
       user: {
         fullname: 'Nguyễn Nhật',
       },
-      created_at: '2022-02-17 19:12',
+      created_at: 'Ngày 17 tháng 02 năm 2022, Lúc 19:12',
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const initialState = {
       user: {
         fullname: 'Nguyễn Gia Vương',
       },
-      created_at: '2022-02-15 06:17',
+      created_at: 'Ngày 11 tháng 01 năm 2022, Lúc 09:12',
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const initialState = {
       user: {
         fullname: 'Nguyễn Hiếu Đặng',
       },
-      created_at: '2022-01-25 10:23',
+      created_at: 'Ngày 13 tháng 02 năm 2022, Lúc 20:12',
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ const initialState = {
       user: {
         fullname: 'David Giấu Tên',
       },
-      created_at: '2022-01-13 11:00',
+      created_at: 'Ngày 10 tháng 02 năm 2022, Lúc 13:12',
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ const initialState = {
       user: {
         fullname: '__inau__',
       },
-      created_at: '2021-12-21 09:14',
+      created_at: 'Ngày 08 tháng 01 năm 2022, Lúc 12:12',
     },
     {
       id: 6,
@@ -73,7 +73,7 @@ const initialState = {
       user: {
         fullname: 'Nguyễn Phạm Hiếu',
       },
-      created_at: '2021-12-21 10:00',
+      created_at: 'Ngày 07 tháng 12 năm 2021, Lúc 19:22',
     },
   ],
 };

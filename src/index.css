@@ -63,3 +63,20 @@ img {
 img {
   background: #ddd;
 }
+
+.sp-only{
+  display:none;
+}
+
+.pc-only{
+  display: block;
+}
+
+@media only screen and (max-width:768px ) {
+    .sp-only{
+      display: block;
+    }
+    .pc-only{
+      display: none;
+    }
+}
