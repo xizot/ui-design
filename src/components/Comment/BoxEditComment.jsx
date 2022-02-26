@@ -93,7 +93,7 @@ function BoxEditComment({ id }) {
           </Typography>
           <ModalConfirmActions>
             <Button
-              variant="contained"
+              variant="outlined"
               sx={{ minWidth: 100, marginRight: defaultPadding }}
               color="info"
               onClick={deleteRatedHandler}>
