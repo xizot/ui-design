@@ -95,7 +95,7 @@ function BoxEditComment({ id }) {
             <Button
               variant="outlined"
               sx={{ minWidth: 100, marginRight: defaultPadding }}
-              color="info"
+              color="error"
               onClick={deleteRatedHandler}>
               Xóa
             </Button>
@@ -170,8 +170,8 @@ function BoxEditComment({ id }) {
           <React.Fragment>
             <Button
               className="button-child"
-              variant="contained"
-              color="info"
+              variant="outlined"
+              color="error"
               style={{ marginRight: '5px', minWidth: { xs: 50, md: 100 } }}
               onClick={openModalDeleteHandler}>
               Xóa
